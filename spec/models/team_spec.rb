@@ -25,14 +25,4 @@ describe Team do
       team.players.should_not include not_added
     end
   end
-
-  private
-
-  def create_team(opts={})
-    FactoryGirl.create :team, opts
-  end
-
-  def create_player(opts={})
-    FactoryGirl.create :player, opts
-  end
 end

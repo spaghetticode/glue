@@ -12,10 +12,4 @@ describe Player do
   end
 
   it { should respond_to :teams }
-
-  private
-
-  def create_player(opts={})
-    FactoryGirl.create :player, opts
-  end
 end
