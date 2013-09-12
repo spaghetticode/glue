@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :player do
-    name "MyString"
-    rfid "MyString"
+    name 'pischello'
+    sequence(:rfid) { |n| "#{n}#{'0' * (12-n.to_s.size)}" }
   end
 end
