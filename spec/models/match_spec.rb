@@ -18,4 +18,6 @@ describe Match do
       expect { match.end }.to change(match, :end_at)
     end
   end
+
+  it { should respond_to :winner }
 end
