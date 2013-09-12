@@ -6,11 +6,9 @@ class Player < ActiveRecord::Base
 
   before_validation :set_dummy_name
 
-  private
+  has_and_belongs_to_many :teams
 
-  def set_dummy_name
-    self.name = dummy_name unless name.present?
-  end
+  private
 
   def dummy_name
     'john smith'
