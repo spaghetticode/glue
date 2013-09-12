@@ -13,5 +13,5 @@ shared_examples 'auto naming' do
     end
   end
 
-  it { subject.private_methods.should include :dummy_name }
+  it { subject.should have_private_method :dummy_name }
 end
