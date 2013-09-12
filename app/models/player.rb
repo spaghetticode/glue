@@ -9,6 +9,6 @@ class Player < ActiveRecord::Base
   private
 
   def set_dummy_name
-    self.name = DUMMY_NAME
+    self.name = DUMMY_NAME unless name.present?
   end
 end
