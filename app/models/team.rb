@@ -1,13 +1,9 @@
 class Team < ActiveRecord::Base
-  DUMMY_NAME = 'foggia'
-
-  validates :name, :presence => true
-
-  before_validation :set_dummy_name
+  include AutoNaming
 
   private
 
-  def set_dummy_name
-    self.name = DUMMY_NAME unless name.present?
+  def dummy_name
+    'foggia'
   end
 end

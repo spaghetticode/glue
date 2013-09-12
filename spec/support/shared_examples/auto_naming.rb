@@ -12,4 +12,6 @@ shared_examples 'auto naming' do
       expect { resource.valid? }.to_not change resource, :name
     end
   end
+
+  it { subject.private_methods.should include :dummy_name }
 end
