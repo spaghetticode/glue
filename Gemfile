@@ -10,6 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'haml-rails'
 gem 'carrierwave'
+gem 'devise'
 
 group :development, :test do
   gem 'guard-rspec'
