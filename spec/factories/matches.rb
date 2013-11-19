@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :match do
+    association :team_a, factory: :team
+    association :team_b, factory: :team
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130913091731) do
+ActiveRecord::Schema.define(version: 20131119101018) do
 
   create_table "matches", force: true do |t|
     t.integer  "winner_id"
@@ -19,14 +19,13 @@ ActiveRecord::Schema.define(version: 20130913091731) do
     t.datetime "end_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_a_id"
+    t.integer  "team_b_id"
+    t.integer  "team_a_score", default: 0
+    t.integer  "team_b_score", default: 0
   end
 
   add_index "matches", ["winner_id"], name: "index_matches_on_winner_id"
-
-  create_table "matches_teams", force: true do |t|
-    t.integer "match_id"
-    t.integer "team_id"
-  end
 
   create_table "players", force: true do |t|
     t.string   "name"

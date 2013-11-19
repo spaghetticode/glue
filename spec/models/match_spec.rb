@@ -4,6 +4,11 @@ describe Match do
   let(:match) { create_match }
   let(:team)  { create_team }
 
+  it { should respond_to :winner }
+  it { should_not respond_to :teams }
+  it { should respond_to :team_a }
+  it { should respond_to :team_a }
+
   it 'is valid' do
     expect { create_match }.to_not raise_error
   end
@@ -20,20 +25,8 @@ describe Match do
     end
   end
 
-  it { should respond_to :winner }
-  it { should respond_to :teams }
-
-  describe '#add_team' do
-    it 'adds the team to the match' do
-      match.add_team team
-      match.teams.should include team
-    end
-
-    it 'allows to add max 2 teams' do
-      2.times { match.add_team create_team }
-      not_added = create_team
-      match.add_team not_added
-      match.teams.should_not include not_added
-    end
+  it 'requires teams' do
+    subject.should have(1).error_on :team_a
+    subject.should have(1).error_on :team_b
   end
 end
