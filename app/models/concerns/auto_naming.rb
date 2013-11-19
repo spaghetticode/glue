@@ -9,6 +9,6 @@ module AutoNaming
   private
 
   def set_dummy_name
-    self.name = dummy_name unless name.present?
+    self.name ||= dummy_name
   end
 end
