@@ -6,7 +6,12 @@ class Player < ActiveRecord::Base
 
   before_validation :set_dummy_name
 
-  has_and_belongs_to_many :teams
+  has_many :teams_as_player_1, :class_name => 'Team', :foreign_key => :player_1_id
+  has_many :teams_as_player_2, :class_name => 'Team', :foreign_key => :player_2_id
+
+  def teams
+    Team.where('player_1_id = :id or player_2_id = :id', :id => id)
+  end
 
   private
 

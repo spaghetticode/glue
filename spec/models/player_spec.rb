@@ -12,6 +12,8 @@ describe Player do
   end
 
   it { should respond_to :teams }
+  it { should respond_to :teams_as_player_1 }
+  it { should respond_to :teams_as_player_2 }
 
   describe '#teams' do
     it 'include teams where player is player_2' do
