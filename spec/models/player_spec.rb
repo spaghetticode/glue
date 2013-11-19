@@ -15,15 +15,20 @@ describe Player do
   it { should respond_to :teams_as_player_1 }
   it { should respond_to :teams_as_player_2 }
 
+  it 'requires unique rfid' do
+    invalid = build_player :rfid => player.rfid
+    invalid.should have(1).error_on :rfid
+  end
+
   describe '#teams' do
     it 'include teams where player is player_2' do
       team = create_team :player_1 => player
-      player.teams.should include(team)
+      player.teams.should include team
     end
 
     it 'include teams where player is player_2' do
       team = create_team :player_2 => player
-      player.teams.should include(team)
+      player.teams.should include team
     end
   end
 end
