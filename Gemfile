@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'carrierwave'
 gem 'devise'
 gem 'slim-rails'
+gem 'twitter-bootstrap-rails'
 
 group :development, :test do
   gem 'guard-rspec'
