@@ -1,15 +1,12 @@
 class Team < ActiveRecord::Base
   include AutoNaming
 
-  PLAYERS_PER_TEAM = 2
+  belongs_to :player_1, :class_name => 'Player'
+  belongs_to :player_2, :class_name => 'Player'
 
-  has_and_belongs_to_many :players
+  has_many :matches
 
-  # this is the way to add players to team, activerecord should not be used
-  # directly as it will not limit the players number to PLAYERS_PER_TEAM
-  def add_player(player)
-    players << player if players.size < PLAYERS_PER_TEAM
-  end
+  validates_presence_of :player_1, :player_2
 
   private
 
