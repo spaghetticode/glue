@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+[['andrea@spaghetticode.it', 'secret123', 'andrea longhi']].each do |arr|
+  email, passwd, name = arr
+  Player.create!(
+    :email                 => email,
+    :password              => passwd,
+    :password_confirmation => passwd,
+    :name                  => name,
+    :rfid                  => SecureRandom.base64(8)
+  )
+end
+
