@@ -1,4 +1,6 @@
 module AutoNaming
+  # TODO: check if we need a DummyPlayer class to manage not registered players,
+  # instead of this crap
   extend ActiveSupport::Concern
 
   included do |base|
