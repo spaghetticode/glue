@@ -1,1 +1,15 @@
 h1 Your Profile
+
+section
+  h2 Your data
+  p name:  #{current_player.name}
+  p email: #{current_player.email}
+  p rfid:  #{current_player.rfid}
+
+section
+  h2 Matches
+  ...
+  ...
+  ...
+
+= link_to 'edit profile', edit_profile_path
