@@ -42,4 +42,5 @@ RSpec.configure do |config|
   config.order = "random"
   config.include FactoryMethods
   config.include Devise::TestHelpers, :type => :controller
+  config.include CapybaraHelpers, :type => :feature
 end
