@@ -31,8 +31,7 @@ html lang="en"
           a.brand href="#" Biliarduino
           .container-fluid.nav-collapse
             ul.nav
-              li= link_to 'sign in',  new_player_session_path
-              li= link_to 'sign up',  new_player_registration_path
+              = render 'nav_links'
 
     .container-fluid
 
@@ -41,9 +40,7 @@ html lang="en"
           .well.sidebar-nav
             ul.nav.nav-list
               li.nav-header Sidebar
-              li= link_to 'sign in',  new_player_session_path
-              li= link_to 'sign up',  new_player_registration_path
-
+              = render 'nav_links'
         .span9
           = bootstrap_flash
           = yield
