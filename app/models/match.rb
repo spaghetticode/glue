@@ -7,6 +7,8 @@ class Match < ActiveRecord::Base
 
   default_scope lambda { order 'start_at DESC' }
 
+  delegate :player_1, :player_2, to: :team_a # unfortunately canno delegate also player_3 and 4...
+
   # this should correspond to created_at, but better being crystal clear
   # about the start/end time.
   def start
@@ -19,5 +21,13 @@ class Match < ActiveRecord::Base
 
   def self.current
     scoped.limit(1).first
+  end
+
+  def player_3
+    team_b.player_1
+  end
+
+  def player_4
+    team_b.player_2
   end
 end

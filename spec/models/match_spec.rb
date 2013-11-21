@@ -1,13 +1,17 @@
 require 'spec_helper'
 
 describe Match do
-  let(:match) { create_match }
   let(:team)  { create_team }
+  let(:match) { create_match }
 
   it { should respond_to :winner }
-  it { should_not respond_to :teams }
   it { should respond_to :team_a }
   it { should respond_to :team_a }
+
+  (1..4).each do |n|
+    method = "player_#{n}"
+    it { should respond_to method }
+  end
 
   it 'is valid' do
     expect { create_match }.to_not raise_error

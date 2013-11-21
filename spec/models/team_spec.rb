@@ -10,7 +10,6 @@ describe Team do
     expect { create_team }.to_not raise_error
   end
 
-  it { should_not respond_to :players }
   it { should respond_to :player_1 }
   it { should respond_to :player_2 }
   it { should respond_to :matches }
