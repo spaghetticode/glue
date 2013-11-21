@@ -2,14 +2,15 @@ h1 Your Profile
 
 section
   h2 Your data
-  p name:  #{current_player.name}
-  p email: #{current_player.email}
-  p rfid:  #{current_player.rfid}
+  p name:        #{current_player.name}
+  p email:       #{current_player.email}
+  p rfid:        #{current_player.rfid}
+  p twitter id:  #{current_player.twitter_id}
 
 section
   h2 Matches
-  ...
-  ...
-  ...
+  ul
+    li Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    li Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 
-= link_to 'edit profile', edit_profile_path
+p= link_to 'edit profile', edit_profile_path
