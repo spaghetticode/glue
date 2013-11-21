@@ -1,0 +1,14 @@
+h1 Current Match
+
+#score
+  h2 Team A
+  ul
+    li= @match.player_1.name
+    li= @match.player_2.name
+    li= @match.team_a_score
+
+  h2 Team B
+  ul
+    li= @match.player_3.name
+    li= @match.player_4.name
+    li= @match.team_b_score
