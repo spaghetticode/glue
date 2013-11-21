@@ -29,4 +29,12 @@ describe Match do
     subject.should have(1).error_on :team_a
     subject.should have(1).error_on :team_b
   end
+
+  describe '#current' do
+    it 'returns the latest match according to #start_at' do
+      recent = create_match :start_at => 1.hour.ago
+      create_match :start_at => 1.day.ago
+      Match.current.should == recent
+    end
+  end
 end
