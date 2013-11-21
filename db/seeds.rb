@@ -14,6 +14,7 @@
     :password_confirmation => passwd,
     :name                  => name,
     :rfid                  => SecureRandom.base64(8)
+    :twitter_id            => 'spaghettic0de'
   )
 end
 
