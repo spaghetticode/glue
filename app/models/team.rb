@@ -7,10 +7,4 @@ class Team < ActiveRecord::Base
   has_many :matches
 
   validates_presence_of :player_1, :player_2
-
-  private
-
-  def dummy_name
-    'foggia'
-  end
 end

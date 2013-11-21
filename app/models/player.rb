@@ -25,10 +25,6 @@ class Player < ActiveRecord::Base
 
   private
 
-  def dummy_name
-    'john smith'
-  end
-
   def sanitize_twitter_id
     return unless twitter_id.present?
     self.twitter_id = twitter_id[1..-1] if twitter_id.first == '@'
