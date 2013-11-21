@@ -1,6 +1,5 @@
 Glue::Application.routes.draw do
-  get 'home/index'
-  root to: 'home#index'
+  root to: 'matches#show'
 
   devise_for :players
 
