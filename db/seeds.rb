@@ -1,12 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+[Match, Team, Player].each do |klass|
+  klass.delete_all
+end
 
-[['andrea@spaghetticode.it', 'secret123', 'andrea longhi']].each do |arr|
+
+[
+  ['andrea@spaghetticode.it', 'secret123', 'andrea longhi'],
+  ['nicola@spaghetticode.it', 'secret123', 'nicola racco'],
+  ['ivan@spaghetticode.it', 'secret123', 'ivan prignano'],
+  ['jeko@spaghetticode.it', 'secret123', 'stefano guglielmetti']
+].each do |arr|
   email, passwd, name = arr
   Player.create!(
     :email                 => email,
@@ -14,7 +16,10 @@
     :password_confirmation => passwd,
     :name                  => name,
     :rfid                  => SecureRandom.base64(8)
-    :twitter_id            => 'spaghettic0de'
   )
 end
 
+team_a = Team.create! :player_1 => Player.first, :player_2 => Player.scoped[1]
+team_b = Team.create! :player_1 => Player.scoped[2], :player_2 => Player.scoped[3]
+
+Match.create! :team_a => team_a, :team_b => team_b, :team_a_score => 3, :team_b_score => 5
