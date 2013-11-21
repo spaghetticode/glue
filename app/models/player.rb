@@ -13,8 +13,10 @@ class Player < ActiveRecord::Base
 
   validates :name, :rfid, presence: true
   validates :rfid, length: {is: 12}, :uniqueness => true
+  validates :twitter_id, :uniqueness => true, :allow_blank => true
 
   before_validation :set_dummy_name
+  before_save :sanitize_twitter_id
 
 
   def teams
@@ -25,5 +27,10 @@ class Player < ActiveRecord::Base
 
   def dummy_name
     'john smith'
+  end
+
+  def sanitize_twitter_id
+    return unless twitter_id.present?
+    self.twitter_id = twitter_id[1..-1] if twitter_id.first == '@'
   end
 end
