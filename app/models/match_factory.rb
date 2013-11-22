@@ -1,15 +1,14 @@
 class MatchFactory
-  (1..4).each do |n|
-    player = "player_#{n}"
-    attr_accessor player
+  PLAYERS = %w[player_1 player_2 player_3 player_4]
 
+  PLAYERS.each do |player|
     define_method  "build_#{player}" do
       rfid = params[player]
       send "#{player}=", Player.find_registered_or_dummy(rfid) || DummyPlayer.new(rfid: rfid)
     end
   end
 
-  attr_accessor :team_a, :team_b, :match
+  attr_accessor :team_a, :team_b, :match, *PLAYERS
 
   attr_reader :params
 
@@ -21,8 +20,8 @@ class MatchFactory
   end
 
   def build_players
-    (1..4).each do |n|
-      send "build_player_#{n}"
+    PLAYERS.each do |player|
+      send "build_#{player}"
     end
   end
 
