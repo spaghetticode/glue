@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :dummy_player do
-    rfid "MyString"
+    rfid SecureRandom.base64(8)
   end
 end

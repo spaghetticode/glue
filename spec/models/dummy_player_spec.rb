@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe DummyPlayer do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { subject.should have(2).error_on :rfid }
+
+  it 'is valid' do
+    build_dummy_player.should be_valid
+  end
 end
