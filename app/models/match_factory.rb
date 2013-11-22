@@ -27,16 +27,16 @@ class MatchFactory
   end
 
   def build_teams
-    self.team_a = Team.find_by_players(player_1, player_2) || Team.new(player_1: player_1, player_2: player_2)
-    self.team_b = Team.find_by_players(player_3, player_4) || Team.new(player_3: player_3, player_4: player_4)
+    self.team_a = Team.find_by_players_or_build(player_1, player_2)
+    self.team_b = Team.find_by_players_or_build(player_3, player_4)
   end
 
   def build_match
-    Match.new(
-      team_a: team_a,
-      team_b: team_b,
+    self.match = Match.new(
+      team_a:   team_a,
+      team_b:   team_b,
       start_at: Time.zone.now
-      )
+    )
   end
 
   def save
