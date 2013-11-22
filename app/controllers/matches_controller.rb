@@ -4,6 +4,12 @@ class MatchesController < ApplicationController
   end
 
   def create
+    @match_factory = MatchFactory.new(params)
+    if @match_factory.save
+      head :created
+    else
+      head :unprocessable_entity
+    end
     # creates a new match with given player rfids.
     # first tries to look for existing registered_players,
     # if not found looks for dummy_players, if not not found
@@ -15,12 +21,17 @@ class MatchesController < ApplicationController
   end
 
   def update
-    # looks for the match with given id and updates the score.
-    @match = Match.find(params[:id])
-    if @match.update_score(params[:match])
+    if update_score_successful?
       head :ok
     else
-      head :bad_request
+      head :unprocessable_entity
     end
+  end
+
+  private
+
+  def update_score_successful?
+    @match = Match.find(params[:id])
+    @match.update_score(params[:match])
   end
 end
