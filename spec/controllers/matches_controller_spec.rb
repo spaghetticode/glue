@@ -64,4 +64,14 @@ describe MatchesController do
       end
     end
   end
+
+  describe 'PUT finish' do
+    let(:params) { {id: 42} }
+
+    it 'is successful' do
+      controller.stub(close_match: true)
+      put 'close', params
+      response.should be_success
+    end
+  end
 end

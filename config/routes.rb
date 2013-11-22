@@ -4,5 +4,7 @@ Glue::Application.routes.draw do
   devise_for :registered_players
 
   resource :profile, :only => [:edit, :update, :show]
-  resource :match,   :only => [:show, :create, :update]
+  resource :match,   :only => [:show, :create, :update] do
+    member { put :close }
+  end
 end

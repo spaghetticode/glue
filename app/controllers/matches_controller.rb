@@ -27,14 +27,28 @@ class MatchesController < ApplicationController
     end
   end
 
+  def close
+    close_match
+    head :ok
+  end
+
   private
 
   def match_score_updated?
-    @match = Match.find(params[:id])
+    find_match
     @match.update_score(params[:match])
   end
 
   def match_created?
     MatchFactory.new(params).save
+  end
+
+  def close_match
+    find_match
+    @match.close
+  end
+
+  def find_match
+    @match = Match.find(params[:id])
   end
 end
