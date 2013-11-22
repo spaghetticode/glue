@@ -2,7 +2,11 @@ class AddDeviseToPlayers < ActiveRecord::Migration
   def self.up
     change_table :players do |t|
       ## Database authenticatable
-      t.string :email,              :null => false, :default => ""
+      # email can be blank when creating a dummy player, so I need
+      # to allow emptyness still requiring uniqueness when email
+      # field is populated.
+      # t.string :email,              :null => false, :default => ""
+      t.string :email
       t.string :encrypted_password, :null => false, :default => ""
 
       ## Recoverable
