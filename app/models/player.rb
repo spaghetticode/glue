@@ -7,7 +7,7 @@ class Player < ActiveRecord::Base
 
 
   validates :name, presence: true
-  validates :rfid, presence: true, uniqueness: true, length: {is: 12}
+  validates :rfid, presence: true, length: {is: 12}
 
   before_validation :set_dummy_name
 

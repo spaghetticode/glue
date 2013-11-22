@@ -7,6 +7,7 @@ class RegisteredPlayer < Player
   devise :database_authenticatable, :registerable, :recoverable, :trackable, :validatable
 
   validates :twitter_id, :uniqueness => true, :allow_blank => true
+  validates :rfid, uniqueness: true
 
   before_save :sanitize_twitter_id
 
