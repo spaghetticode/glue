@@ -4,8 +4,7 @@ class MatchesController < ApplicationController
   end
 
   def create
-    @match_factory = MatchFactory.new(params)
-    if @match_factory.save
+    if match_created?
       head :created
     else
       head :unprocessable_entity
@@ -21,7 +20,7 @@ class MatchesController < ApplicationController
   end
 
   def update
-    if update_score_successful?
+    if match_score_updated?
       head :ok
     else
       head :unprocessable_entity
@@ -30,8 +29,12 @@ class MatchesController < ApplicationController
 
   private
 
-  def update_score_successful?
+  def match_score_updated?
     @match = Match.find(params[:id])
     @match.update_score(params[:match])
+  end
+
+  def match_created?
+    MatchFactory.new(params).save
   end
 end

@@ -14,7 +14,34 @@ describe MatchesController do
   end
 
   describe 'POST create' do
-    pending
+    let :params  do
+      {
+        match: {
+          player_1: build_dummy_player.rfid,
+          player_2: build_dummy_player.rfid,
+          player_3: build_dummy_player.rfid,
+          player_4: build_dummy_player.rfid
+        }
+      }
+    end
+
+    context 'when match can be created' do
+      before { controller.stub(match_created?: true) }
+
+      it 'is successful' do
+        post 'create', params
+        response.should be_success
+      end
+    end
+
+    context 'when match cannot be created' do
+      before { controller.stub(match_created?: false) }
+
+      it 'fails with unprocessable entity' do
+        post 'create', params
+        response.should be_unprocessable
+      end
+    end
   end
 
   describe 'PUT update' do
@@ -22,15 +49,16 @@ describe MatchesController do
 
     context 'when score can be updated' do
       it 'is successful' do
-        controller.stub(update_score_successful?: true)
+        controller.stub(match_score_updated?: true)
         put 'update', params
         response.should be_success
       end
     end
 
     context 'when score cannot be updated' do
+      before { controller.stub(match_score_updated?: false) }
+
       it 'fails with unprocessable entity' do
-        controller.stub(update_score_successful?: false)
         put 'update', params
         response.should be_unprocessable
       end
