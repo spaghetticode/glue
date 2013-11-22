@@ -15,7 +15,7 @@ end
     :password              => passwd,
     :password_confirmation => passwd,
     :name                  => name,
-    :rfid                  => SecureRandom.base64(8)
+    :rfid                  => Player.random_rfid
   )
 end
 

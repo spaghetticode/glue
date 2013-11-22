@@ -6,6 +6,6 @@ FactoryGirl.define do
     password 'secret'
     password_confirmation 'secret'
     sequence(:email) {|n| "player#{n}@example.com"}
-    sequence(:rfid) { SecureRandom.base64(8) }
+    sequence(:rfid) { Player.random_rfid }
   end
 end

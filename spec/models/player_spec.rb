@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Player do
   describe '.find_registered_or_dummy' do
-    let(:rfid)   { SecureRandom.base64(8) }
+    let(:rfid)   { Player.random_rfid }
     let(:dummy)  { create_dummy_player :rfid => rfid }
     let(:player) { create_registered_player :rfid => rfid }
 
@@ -35,6 +35,12 @@ describe Player do
       it 'picks the registered player anyway' do
         Player.find_registered_or_dummy(rfid).should == player
       end
+    end
+  end
+
+  describe '.random_rfid' do
+    it 'returns a 12 size string' do
+      Player.random_rfid.size.should == 12
     end
   end
 end

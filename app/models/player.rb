@@ -15,6 +15,10 @@ class Player < ActiveRecord::Base
     RegisteredPlayer.find_by_rfid(rfid) or DummyPlayer.find_by_rfid(rfid)
   end
 
+  def self.random_rfid
+    SecureRandom.base64(8)
+  end
+
   def teams
     Team.where('player_1_id = :id or player_2_id = :id', :id => id)
   end
