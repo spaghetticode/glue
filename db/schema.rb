@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20131122103925) do
     t.string   "rfid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
+    t.string   "email"
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20131122103925) do
     t.string   "type",                   default: "", null: false
   end
 
-  add_index "players", ["email"], name: "index_players_on_email"
+  add_index "players", ["email"], name: "index_players_on_email", unique: true
   add_index "players", ["reset_password_token"], name: "index_players_on_reset_password_token", unique: true
 
   create_table "teams", force: true do |t|
