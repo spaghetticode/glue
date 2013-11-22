@@ -4,7 +4,7 @@ describe Team do
   it_behaves_like 'auto naming'
 
   let(:team)    { create_team }
-  let(:player ) { create_player }
+  let(:player ) { create_registered_player }
 
   it 'is valid' do
     expect { create_team }.to_not raise_error

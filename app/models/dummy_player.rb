@@ -1,0 +1,2 @@
+class DummyPlayer < Player
+end

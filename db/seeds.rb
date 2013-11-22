@@ -10,7 +10,7 @@ end
   ['jeko@spaghetticode.it', 'secret123', 'stefano guglielmetti']
 ].each do |arr|
   email, passwd, name = arr
-  Player.create!(
+  RegisteredPlayer.create!(
     :email                 => email,
     :password              => passwd,
     :password_confirmation => passwd,

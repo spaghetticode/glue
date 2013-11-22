@@ -8,7 +8,7 @@ class ProfilesController < AuthenticatedController
   end
 
   def update
-    if current_player.update_attributes(profile_params)
+    if current_registered_player.update_attributes(profile_params)
       redirect_to profile_path, notice: 'Your profile was successfully updated'
     else
       render :edit
@@ -18,6 +18,6 @@ class ProfilesController < AuthenticatedController
   private
 
   def profile_params
-    params.require(:player).permit(Player.column_names)
+    params.require(:registered_player).permit(Player.column_names)
   end
 end

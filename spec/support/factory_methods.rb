@@ -1,5 +1,5 @@
 module FactoryMethods
-  %w[team player match].each do |name|
+  %w[team match registered_player dummy_player].each do |name|
     define_method "create_#{name}" do |opts={}|
       FactoryGirl.create name, opts
     end

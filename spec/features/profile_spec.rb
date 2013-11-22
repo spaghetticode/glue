@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'profile' do
   let(:password) { 'secret123' }
   let(:new_rfid) { 'somethingfun' }
-  let(:player)   { create_player :password => password, :password_confirmation => password }
+  let(:player)   { create_registered_player :password => password, :password_confirmation => password }
 
   before { login player, password }
 

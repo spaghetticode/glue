@@ -1,6 +1,6 @@
 h1 Edit profile
 
-= form_for current_player, :url => profile_path, :method => :put do |f|
+= form_for current_registered_player, :url => profile_path, :method => :put do |f|
   = f.label :name
   = f.text_field :name
 

@@ -20,7 +20,7 @@ class Match < ActiveRecord::Base
   end
 
   def self.current
-    scoped.limit(1).first
+    first
   end
 
   def player_3

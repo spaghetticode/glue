@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :team do
     name "MyString"
-    association :player_1, factory: :player
-    association :player_2, factory: :player
+    association :player_1, factory: :registered_player
+    association :player_2, factory: :registered_player
   end
 end

@@ -1,6 +1,6 @@
 - unless signed_in?
-  li= link_to 'sign in',  new_player_session_path
-  li= link_to 'sign up',  new_player_registration_path
+  li= link_to 'sign in',  new_registered_player_session_path
+  li= link_to 'sign up',  new_registered_player_registration_path
 - else
   li= link_to 'profile',   profile_path
-  li= link_to 'sign out',  destroy_player_session_path, :method => :delete
+  li= link_to 'sign out',  destroy_registered_player_session_path, :method => :delete
