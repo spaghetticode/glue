@@ -11,6 +11,10 @@ class Player < ActiveRecord::Base
 
   before_validation :set_dummy_name
 
+  def self.find_registered_or_dummy(rfid)
+    RegisteredPlayer.find_by_rfid(rfid) or DummyPlayer.find_by_rfid(rfid)
+  end
+
   def teams
     Team.where('player_1_id = :id or player_2_id = :id', :id => id)
   end
