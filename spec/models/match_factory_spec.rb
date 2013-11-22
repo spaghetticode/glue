@@ -108,4 +108,26 @@ describe MatchFactory do
       expect { subject.build_match }.to change(subject, :match)
     end
   end
+
+  describe '#save' do
+    it 'tries to save players, teams and match' do
+      %w[save_players save_teams save_match].each do |method|
+        subject.should_receive(method).and_return(true)
+      end
+      subject.save
+    end
+
+    context 'when resources can be created' do
+      it 'is successful' do
+        params = {
+          player_1: Player.random_rfid,
+          player_2: Player.random_rfid,
+          player_3: Player.random_rfid,
+          player_4: Player.random_rfid
+        }
+        subject.params.merge!(params)
+        subject.save.should be_true
+      end
+    end
+  end
 end
