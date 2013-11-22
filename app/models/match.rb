@@ -15,8 +15,12 @@ class Match < ActiveRecord::Base
     update_attribute :start_at, Time.zone.now
   end
 
-  def end
+  def close
     update_attribute :end_at, Time.zone.now
+  end
+
+  def closed?
+    end_at.present?
   end
 
   def self.current
@@ -29,5 +33,13 @@ class Match < ActiveRecord::Base
 
   def player_4
     team_b.player_2
+  end
+
+  def update_score(params)
+    unless closed?
+      self.team_a_score = params[:team_a_score]
+      self.team_b_score = params[:team_b_score]
+      save
+    end
   end
 end
