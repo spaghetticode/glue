@@ -41,4 +41,16 @@ class MatchFactory
   def save
     save_players and save_teams and save_match
   end
+
+  def save_players
+    PLAYERS.each { |player| send(player).save }
+  end
+
+  def save_teams
+    team_a.save and team_b.save
+  end
+
+  def save_match
+    match.save
+  end
 end

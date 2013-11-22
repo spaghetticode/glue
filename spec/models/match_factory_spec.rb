@@ -130,4 +130,14 @@ describe MatchFactory do
       end
     end
   end
+
+  describe '#save_players' do
+    it 'tries to save players' do
+      (1..4).each do |n|
+        player = double.tap {|p| p.should_receive :save}
+        subject.send("player_#{n}=", player)
+      end
+      subject.save_players
+    end
+  end
 end
