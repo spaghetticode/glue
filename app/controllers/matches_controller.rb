@@ -23,7 +23,6 @@ class MatchesController < ApplicationController
   end
 
   def update
-    binding.pry
     if match_score_updated?
       head :ok
     else
@@ -53,7 +52,7 @@ class MatchesController < ApplicationController
   end
 
   def find_match
-    #@match = Match.find(params[:id])
-    @match = Match.last
+    # @match = Match.find(params[:id])
+    @match = Match.current
   end
 end
