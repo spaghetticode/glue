@@ -1,4 +1,7 @@
 class MatchesController < ApplicationController
+  protect_from_forgery only: []
+
+
   def show
     @match = Match.current
   end
@@ -20,6 +23,7 @@ class MatchesController < ApplicationController
   end
 
   def update
+    binding.pry
     if match_score_updated?
       head :ok
     else
@@ -49,6 +53,7 @@ class MatchesController < ApplicationController
   end
 
   def find_match
-    @match = Match.find(params[:id])
+    #@match = Match.find(params[:id])
+    @match = Match.last
   end
 end
