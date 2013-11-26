@@ -12,6 +12,7 @@ gem 'carrierwave'
 gem 'devise'
 gem 'slim-rails'
 gem 'twitter-bootstrap-rails'
+gem 'websocket-rails'
 
 group :development, :test do
   gem 'guard-rspec'
