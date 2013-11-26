@@ -1,7 +1,7 @@
 - if @match
   h1 Current Match
 
-  #score
+  #match data-wsuri="#{request.host}:#{request.port}/websocket"
     h2 Team A
     ul
       li player 1: #{@match.player_1.name}
