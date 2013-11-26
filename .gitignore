@@ -15,3 +15,5 @@
 /log/*.log
 /tmp
 /spec/views/**/*
+
+.DS_Store
