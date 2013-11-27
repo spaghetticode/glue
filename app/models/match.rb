@@ -42,4 +42,18 @@ class Match < ActiveRecord::Base
       save
     end
   end
+
+  def as_json(opts={})
+    {
+      id: id,
+      player_1: player_1.name,
+      player_2: player_2.name,
+      player_3: player_3.name,
+      player_4: player_4.name,
+      closed:   closed?,
+      start_at: start_at,
+      team_a_score: team_a_score,
+      team_b_score: team_b_score
+    }
+  end
 end
