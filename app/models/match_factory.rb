@@ -44,6 +44,7 @@ class MatchFactory
 
   def save_players
     PLAYERS.each { |player| send(player).save }
+    PLAYERS.each { |player| return false unless send(player).valid? }
   end
 
   def save_teams

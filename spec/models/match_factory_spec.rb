@@ -125,8 +125,8 @@ describe MatchFactory do
           player_3: Player.random_rfid,
           player_4: Player.random_rfid
         }
-        subject.params.merge!(params)
-        subject.save.should be_true
+        factory = MatchFactory.new(params)
+        factory.save.should be_true
       end
     end
   end
@@ -134,7 +134,7 @@ describe MatchFactory do
   describe '#save_players' do
     it 'tries to save players' do
       (1..4).each do |n|
-        player = double.tap {|p| p.should_receive :save}
+        player = double.tap { |p| p.should_receive :save }.as_null_object
         subject.send("player_#{n}=", player)
       end
       subject.save_players
