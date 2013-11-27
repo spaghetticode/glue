@@ -16,4 +16,4 @@
 //= require turbolinks
 //= require_tree .
 //= require websocket_rails/main
-//= require match_poller
+//= require match_updater

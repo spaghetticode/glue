@@ -1,17 +1,12 @@
-class @WsPoller
-  interval = 1000
+class @MatchUpdater
 
   constructor: (urlElement) ->
     url = $(urlElement).data 'wsuri'
     @dispatcher = new WebSocketRails(url, true)
-    @dispatcher.on_open = @startPolling
     @dispatcher.bind 'refresh_match', @refreshMatch
 
-  startPolling: => setInterval @poll, interval
-
-  poll: => @dispatcher.trigger('refresh_match')
-
   refreshMatch: (data) =>
+    console.log 'received data', data
     match = JSON.parse(data.msg_body)
     $('#player_1').text match.player_1
     $('#player_2').text match.player_2
