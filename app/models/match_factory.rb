@@ -43,8 +43,7 @@ class MatchFactory
   end
 
   def save_players
-    PLAYERS.each { |player| send(player).save }
-    PLAYERS.each { |player| return false unless send(player).valid? }
+    PLAYERS.map { |player| send(player).save }.inject :&
   end
 
   def save_teams

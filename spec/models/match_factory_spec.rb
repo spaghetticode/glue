@@ -140,4 +140,14 @@ describe MatchFactory do
       subject.save_players
     end
   end
+
+  context 'when any player cannot be saved' do
+    it 'returns false' do
+      (1..4).each_with_index do |n|
+        player = double(save: n != 4)
+        subject.send("player_#{n}=", player)
+        subject.save_players.should be_false
+      end
+    end
+  end
 end
