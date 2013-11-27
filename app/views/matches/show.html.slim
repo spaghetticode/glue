@@ -6,16 +6,31 @@
   #match data-wsuri="#{request.host}:#{request.port}/websocket"
     h2 Team A
     ul
-      li player 1: #{@match.player_1.name}
-      li player 2: #{@match.player_2.name}
-      li score: #{@match.team_a_score}
+      li
+        | player 1: &nbsp;
+        span#player_1= @match.player_1.name
+      li
+        | player 2: &nbsp;
+        span#player_1= @match.player_2.name
+      li
+        | score: &nbsp;
+        span#score_a= @match.team_a_score
 
     h2 Team B
     ul
-      li player 1: #{@match.player_3.name}
-      li player 2: #{@match.player_4.name}
-      li score: #{@match.team_b_score}
+      li
+        | player 1: &nbsp;
+        span#player_1= @match.player_3.name
+      li
+        | player 2: &nbsp;
+        span#player_1= @match.player_4.name
+      li
+        | score: &nbsp;
+        span#score_b= @match.team_b_score
+
 
   - if @match.closed?
-    p final result: #{@match.team_a_score} - #{@match.team_b_score}
+    p
+      | final result: &nbsp;
+      span#final_score #{@match.team_a_score} - #{@match.team_b_score}
 
