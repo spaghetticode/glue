@@ -5,6 +5,9 @@ WebsocketRails.setup do |config|
 end
 
 WebsocketRails::EventMap.describe do
+  subscribe :start_match,   to: Ws::MatchesController, with_method: :start
+  subscribe :close_match,   to: Ws::MatchesController, with_method: :close
+  subscribe :update_match,  to: Ws::MatchesController, with_method: :update
   subscribe :refresh_match, to: Ws::MatchesController, with_method: :refresh
 end
 
