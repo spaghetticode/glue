@@ -1,4 +1,6 @@
-- if @match
+- unless @match
+  h1 Welcome to Biliarduino
+- else
   h1 Current Match
 
   #match data-wsuri="#{request.host}:#{request.port}/websocket"
@@ -17,5 +19,3 @@
   - if @match.closed?
     p final result: #{@match.team_a_score} - #{@match.team_b_score}
 
-- else
-  h1 Welcome to Biliarduino
