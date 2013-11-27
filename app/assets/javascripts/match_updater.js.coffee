@@ -21,4 +21,4 @@ class @MatchUpdater
 
 
 
-jQuery -> window.poller = new WsPoller('#match')
+jQuery -> window.poller = new MatchUpdater('#match')
