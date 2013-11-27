@@ -30,7 +30,5 @@
 
 
   - if @match.closed?
-    p
-      | final result: &nbsp;
-      span#final_score #{@match.team_a_score} - #{@match.team_b_score}
+    p#final_score #{@match.team_a_score} - #{@match.team_b_score}
 

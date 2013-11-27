@@ -16,7 +16,7 @@ class @MatchUpdater
     score_b = match.team_b_score
     $('#score_a').text score_a
     $('#score_b').text score_b
-    score = if match.closed then "#{score_a} - #{score_b}" else ''
+    score = if match.closed then "final score: #{score_a} - #{score_b}" else ''
     $('#final_score').text score
 
 
