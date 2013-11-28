@@ -9,10 +9,13 @@
   ["07003874D398", "Pelè", "pele"]
 ].each do |arr|
   rfid, name, twitter_id = arr
-  DummyPlayer.create!(
+  RegisteredPlayer.create!(
     :name       => name,
     :rfid       => rfid,
-    :twitter_id => twitter_id
+    :twitter_id => twitter_id,
+    :email      => "#{twitter_id}@biliarduino.com",
+    :password   => 'secret123',
+    :password_confirmation => 'secret123'
   )
 end
 
