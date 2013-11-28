@@ -7,20 +7,20 @@
           div(class='hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a')
             a(class='hi-icon' href='#set-1' id="score_a")= @match.team_a_score
             ul
-              li.player#player_1
+              li.player
                 | @
-                = @match.player_1.name
-              li.player#player_2
+                span#player_1= @match.player_1.twitter_id
+              li.player
                 | @
-                = @match.player_2.name
+                span#player_2= @match.player_2.twitter_id
 
         section(id='set-2')
             div(class='hi-icon-wrap hi-icon-effect-2 hi-icon-effect-2a')
               a(class='hi-icon' href='#set-2' id="score_b")= @match.team_b_score
               ul
-                li.player#player_3
+                li.player
                   | @
-                  = @match.player_3.name
-                li.player#player_4
+                  span#player_3= @match.player_3.twitter_id
+                li.player
                   | @
-                  = @match.player_4.name
+                  span#player_4= @match.player_4.twitter_id
