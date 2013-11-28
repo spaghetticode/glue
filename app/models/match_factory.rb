@@ -17,11 +17,19 @@ class MatchFactory
     build_players
     build_teams
     build_match
+    # TODO remove after Codemotion
+    temporary_method_for_avoiding_duplicate_names_on_the_same_match
   end
 
   def build_players
     PLAYERS.each do |player|
       send "build_#{player}"
+    end
+  end
+
+  def temporary_method_for_avoiding_duplicate_names_on_the_same_match
+    if player_1.is_a? DummyPlayer
+      DummyPlayer.set_unique_names([player_1, player_2, player_3, player_4])
     end
   end
 
