@@ -2,26 +2,12 @@
   h1 Welcome to Biliarduino
 - else
   #match data-wsuri="#{request.host}:#{request.port}/websocket"
-    h2 Team A
-    ul
-      li
-        | player 1: &nbsp;
-        span#player_1= @match.player_1.name
-      li
-        | player 2: &nbsp;
-        span#player_1= @match.player_2.name
-      li
-        | score: &nbsp;
-        span#score_a= @match.team_a_score
+    #team_a
+      #player_1= @match.player_1.name
+      #player_1= @match.player_2.name
+      #score_a= @match.team_a_score
 
-    h2 Team B
-    ul
-      li
-        | player 1: &nbsp;
-        span#player_3= @match.player_3.name
-      li
-        | player 2: &nbsp;
-        span#player_4= @match.player_4.name
-      li
-        | score: &nbsp;
-        span#score_b= @match.team_b_score
+    #team_b
+      #player_3= @match.player_3.name
+      #player_4= @match.player_4.name
+      #score_b= @match.team_b_score
