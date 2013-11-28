@@ -15,4 +15,12 @@ describe DummyPlayer do
     subject.valid?
     DummyPlayer::DUMMY_NAMES.should include(subject.name)
   end
+
+  describe '.set_unique_names' do
+    it 'makes player names unique' do
+      players = (0..3).map { create_dummy_player :name => 'allthesame' }
+      DummyPlayer.set_unique_names(players)
+      players.map(&:name).uniq.size.should == 4
+    end
+  end
 end
