@@ -10,4 +10,9 @@ describe DummyPlayer do
   it 'allows multiple empty emails' do
     3.times { create_dummy_player }
   end
+
+  it 'picks names from the dummy_player_names.yml file' do
+    subject.valid?
+    DummyPlayer::DUMMY_NAMES.should include(subject.name)
+  end
 end
