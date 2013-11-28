@@ -1,8 +1,6 @@
 - unless @match
   h1 Welcome to Biliarduino
 - else
-  h1 Current Match
-
   #match data-wsuri="#{request.host}:#{request.port}/websocket"
     h2 Team A
     ul
@@ -27,8 +25,3 @@
       li
         | score: &nbsp;
         span#score_b= @match.team_b_score
-
-
-  - if @match.closed?
-    p#final_score #{@match.team_a_score} - #{@match.team_b_score}
-
