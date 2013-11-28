@@ -22,4 +22,8 @@ class Player < ActiveRecord::Base
   def teams
     Team.where('player_1_id = :id or player_2_id = :id', :id => id)
   end
+
+  def twitter_name
+    "@#{twitter_id}"
+  end
 end

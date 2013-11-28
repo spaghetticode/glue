@@ -38,6 +38,13 @@ describe Player do
     end
   end
 
+  describe '#twitter_name' do
+    it 'includes @' do
+      subject.twitter_id = 'spaghettic0de'
+      subject.twitter_name.should == '@spaghettic0de'
+    end
+  end
+
   describe '.random_rfid' do
     it 'returns a 12 size string' do
       Player.random_rfid.size.should == 12
