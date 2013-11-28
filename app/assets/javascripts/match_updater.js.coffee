@@ -12,10 +12,8 @@ class @MatchUpdater
     $('#player_2').text match.player_2
     $('#player_3').text match.player_3
     $('#player_4').text match.player_4
-    score_a = match.team_a_score
-    score_b = match.team_b_score
-    $('#score_a').text score_a
-    $('#score_b').text score_b
+    $('#score_a').text match.team_a_score
+    $('#score_b').text match.team_b_score
 
 
 
