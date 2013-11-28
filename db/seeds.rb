@@ -1,25 +1,17 @@
-[Match, Team, Player].each do |klass|
-  klass.delete_all
-end
+# destroy all records in the db:
+[Match, Team, Player].each { |klass| klass.delete_all }
 
-
+# build sample players for Codemotion MILAN demo:
 [
-  ['andrea@spaghetticode.it', 'secret123', 'andrea longhi'],
-  ['nicola@spaghetticode.it', 'secret123', 'nicola racco'],
-  ['ivan@spaghetticode.it', 'secret123', 'ivan prignano'],
-  ['jeko@spaghetticode.it', 'secret123', 'stefano guglielmetti']
+  ["07003895AF05", "Falcao", "falcao"],
+  ["0700466BA18B", "George Best", "georgebest"],
+  ["0700384595EF", "Maradona", "maradona"],
+  ["07003874D398", "Pelè", "pele"]
 ].each do |arr|
-  email, passwd, name = arr
-  RegisteredPlayer.create!(
-    :email                 => email,
-    :password              => passwd,
-    :password_confirmation => passwd,
-    :name                  => name,
-    :rfid                  => Player.random_rfid
+  rfid, name, twitter_id = arr
+  DummyPlayer.create!(
+    :name       => name,
+    :rfid       => rfid,
+    :twitter_id => twitter_id
   )
 end
-
-team_a = Team.create! :player_1 => Player.first, :player_2 => Player.scoped[1]
-team_b = Team.create! :player_1 => Player.scoped[2], :player_2 => Player.scoped[3]
-
-Match.create! :team_a => team_a, :team_b => team_b, :team_a_score => 3, :team_b_score => 5
