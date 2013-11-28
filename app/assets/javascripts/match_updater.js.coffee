@@ -12,8 +12,14 @@ class @MatchUpdater
     $('#player_2').text match.player_2
     $('#player_3').text match.player_3
     $('#player_4').text match.player_4
+    old_score_a = $('#score_a').text()
+    old_score_b = $('#score_b').text()
     $('#score_a').text match.team_a_score
     $('#score_b').text match.team_b_score
+    if old_score_a != match.team_a_score
+      $('#score_a').trigger 'hover'
+    if old_score_a != match.team_a_score
+      $('#score_b').trigger 'hover'
 
 
 
