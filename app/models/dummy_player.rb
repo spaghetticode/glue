@@ -11,7 +11,7 @@ class DummyPlayer < Player
     names = DUMMY_NAMES.dup
     players.each do |player|
       name = names.sample
-      player.update_attributes :name => name, :twitter_id => name
+      player.update_attributes :name => name, :twitter_id => name.downcase.gsub(' ', '')
       names.delete(name)
     end
   end
