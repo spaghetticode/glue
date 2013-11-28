@@ -15,3 +15,7 @@
     :twitter_id => twitter_id
   )
 end
+
+team_a = Team.create! :player_1 => Player.all[0], :player_2 => Player.all[1]
+team_b = Team.create! :player_1 => Player.all[2], :player_2 => Player.all[3]
+Match.create! :team_a => team_a, :team_b => team_b, :team_a_score => 3, :team_b_score => 5
