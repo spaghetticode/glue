@@ -17,3 +17,5 @@
 /spec/views/**/*
 
 .DS_Store
+
+config/social.yml

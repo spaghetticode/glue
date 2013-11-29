@@ -23,3 +23,5 @@ group :development, :test do
   gem 'pry'
   gem 'capybara'
 end
+
+gem 'twitter', '4.8.1'
