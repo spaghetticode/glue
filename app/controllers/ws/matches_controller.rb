@@ -5,21 +5,21 @@ module Ws
     def start_match
       @factory = MatchFactory.new(params)
       @factory.save
-      broadcast_message :refresh_match, msg_body: match.to_json
+      broadcast_message :match_started, msg_body: match.to_json
       send_message :started, match.to_json
       tweet "#{timestamp} A new match has started! #{twitter_names}"
     end
 
     def close_match
       match.close
-      broadcast_message :refresh_match, msg_body: match.to_json
+      broadcast_message :match_closed, msg_body: match.to_json
       send_message :closed, match.to_json
       tweet "#{timestamp} Match result: #{match.team_a.score} - #{match.team_b.score} #{twitter_names}"
     end
 
     def update_match
       match.update_score(params)
-      broadcast_message :refresh_match, msg_body: match.to_json
+      broadcast_message :match_updated, msg_body: match.to_json
       send_message :updated, match.to_json
     end
 
