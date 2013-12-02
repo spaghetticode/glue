@@ -1,4 +1,6 @@
-class Social
+module Social
+  extend self
+
   def tweet(message)
     begin
       Twitter.update message
