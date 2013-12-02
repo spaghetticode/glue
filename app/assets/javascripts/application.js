@@ -15,5 +15,3 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
-//= require websocket_rails/main
-//= require match_updater
