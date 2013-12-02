@@ -21,5 +21,7 @@ module Glue
     # config.i18n.default_locale = :de
     config.generators.stylesheets = false
     config.generators.javascripts = false
+
+    config.assets.precompile += %w[match.js match.css]
   end
 end
