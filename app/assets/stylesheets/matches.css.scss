@@ -12,7 +12,7 @@ main.scss - primary Sass file
 // Modules and Variables
 
 body {
-  background: transparent url('../assets/background.jpg') no-repeat 0 0;
+  background: transparent image-url('background.jpg') no-repeat 0 0;
   background-size: 100%;
   color: #fff;
   font-family: arial;
