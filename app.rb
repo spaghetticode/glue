@@ -6,6 +6,43 @@ require 'pry'
 set :server, 'thin'
 set :sockets, []
 
+matches = []
+
+class Match
+  attr_writer   :team_a_score, :team_b_score, :closed
+  attr_accessor :player_1, :player_2, :player_3, :player_4
+
+  def initialize(players)
+    update(attributes)
+  end
+
+  def update(attributes)
+    attributes.each do |attribute, value|
+      send "#{attribute}=", value
+    end
+  end
+
+  def close
+    self.closed = true
+  end
+
+  def closed?
+    !!@closed
+  end
+
+  def team_a_score
+    @team_a_score ||= 0
+  end
+
+  def team_b_score
+    @team_b_score ||= 0
+  end
+
+  def to_json
+    %({"player_1": "#{player_1}","player_2": "#{player_2}","player_3": "#{player_3}","player_4": "#{player_4}", "team_a_score": "#{team_a_score}", "team_b_score": "#{team_b_score}", "closed": "#{closed?}"})
+  end
+end
+
 get '/' do
   erb :index
 end
@@ -18,9 +55,24 @@ get '/websocket' do
       end
       ws.onmessage do |msg|
         json = JSON.parse(msg)
-        type, data = json.first, json.last
-        bunding.pry
-        EM.next_tick { settings.sockets.each {|s| s.send(msg) } }
+        type, data = json.first, json.last['data']
+        case type
+        when 'start_match'
+          @match = Match.new(data)
+          matches << @match
+        when 'update_match'
+          @match = matches.last
+          @match.update(data)
+        when 'close_match'
+          @match = matches.last
+          @match.update(data)
+          @match.close
+        end
+        EM.next_tick do
+          settings.sockets.each do |s|
+            s.send %([["#{type}", #{@match.to_json}]]) # double array, to have same format of the rails app
+          end
+        end
       end
       ws.onclose do
         warn("websocket closed")
@@ -62,5 +114,24 @@ __END__
   </div>
 </div>
 <footer><p>&copy; <a href="https://www.mikamai.com">MIKAMAI 2013</a></p></footer>
+<script>
+$(function() {
+  var ws       = new WebSocket('ws://' + window.location.host + '/websocket');
+  ws.onopen    = function()  { console.log('websocket opened'); };
+  ws.onclose   = function()  { console.log('websocket closed'); }
+  ws.onmessage = function(m) {
+    json = JSON.parse(m.data)[0];
+    window.j = json
+    event = json[0];
+    match = json[1];
+    $('#score_a').text(match.team_a_score);
+    $('#score_b').text(match.team_b_score);
+    $('#player_1').text('@' + match.player_1);
+    $('#player_2').text('@' + match.player_2);
+    $('#player_3').text('@' + match.player_3);
+    $('#player_4').text('@' + match.player_4);
+  }
+})
+</script>
 </body>
 </html>
