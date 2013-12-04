@@ -1,47 +1,14 @@
 require 'json'
 require 'sinatra'
 require 'sinatra-websocket'
-require 'pry'
 
 set :server, 'thin'
 set :sockets, []
 
+require_relative 'match'
+
+
 matches = []
-
-class Match
-  attr_writer   :team_a_score, :team_b_score, :closed
-  attr_accessor :player_1, :player_2, :player_3, :player_4
-
-  def initialize(players)
-    update(players)
-  end
-
-  def update(attributes)
-    attributes.each do |attribute, value|
-      send "#{attribute}=", value
-    end
-  end
-
-  def close
-    self.closed = true
-  end
-
-  def closed?
-    !!@closed
-  end
-
-  def team_a_score
-    @team_a_score ||= 0
-  end
-
-  def team_b_score
-    @team_b_score ||= 0
-  end
-
-  def to_json
-    %({"player_1": "#{player_1}","player_2": "#{player_2}","player_3": "#{player_3}","player_4": "#{player_4}", "team_a_score": "#{team_a_score}", "team_b_score": "#{team_b_score}", "closed": "#{closed?}"})
-  end
-end
 
 get '/' do
   erb :index
@@ -50,9 +17,7 @@ end
 get '/websocket' do
   if request.websocket?
     request.websocket do |ws|
-      ws.onopen do
-        settings.sockets << ws
-      end
+      ws.onopen { settings.sockets << ws }
       ws.onmessage do |msg|
         json = JSON.parse(msg)
         type, data = json.first, json.last['data']
@@ -75,7 +40,7 @@ get '/websocket' do
         end
       end
       ws.onclose do
-        warn("websocket closed")
+        warn 'websocket closed'
         settings.sockets.delete(ws)
       end
     end
@@ -114,24 +79,5 @@ __END__
   </div>
 </div>
 <footer><p>&copy; <a href="https://www.mikamai.com">MIKAMAI 2013</a></p></footer>
-<script>
-$(function() {
-  var ws       = new WebSocket('ws://' + window.location.host + '/websocket');
-  ws.onopen    = function()  { console.log('websocket opened'); };
-  ws.onclose   = function()  { console.log('websocket closed'); }
-  ws.onmessage = function(m) {
-    json = JSON.parse(m.data)[0];
-    window.j = json
-    event = json[0];
-    match = json[1];
-    $('#score_a').text(match.team_a_score);
-    $('#score_b').text(match.team_b_score);
-    $('#player_1').text('@' + match.player_1);
-    $('#player_2').text('@' + match.player_2);
-    $('#player_3').text('@' + match.player_3);
-    $('#player_4').text('@' + match.player_4);
-  }
-})
-</script>
 </body>
 </html>
