@@ -13,7 +13,7 @@ class Match
   attr_accessor :player_1, :player_2, :player_3, :player_4
 
   def initialize(players)
-    update(attributes)
+    update(players)
   end
 
   def update(attributes)
