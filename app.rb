@@ -6,9 +6,11 @@ set :server, 'thin'
 set :sockets, []
 
 require_relative 'match'
+require_relative 'message_in'
 
 
 matches = []
+
 
 get '/' do
   erb :index
@@ -19,23 +21,22 @@ get '/websocket' do
     request.websocket do |ws|
       ws.onopen { settings.sockets << ws }
       ws.onmessage do |msg|
-        json = JSON.parse(msg)
-        type, data = json.first, json.last['data']
-        case type
+        message = MessageIn.new(msg)
+        case message.event
         when 'start_match'
-          @match = Match.new(data)
+          @match = Match.new(message.data)
           matches << @match
         when 'update_match'
           @match = matches.last
-          @match.update(data)
+          @match.update(message.data)
         when 'close_match'
           @match = matches.last
-          @match.update(data)
+          @match.update(message.data)
           @match.close
         end
         EM.next_tick do
           settings.sockets.each do |s|
-            s.send %([["#{type}", #{@match.to_json}]]) # double array, to have same format of the rails app
+            s.send %([["#{message.event}", #{@match.to_json}]]) # double array, to have same format of the rails app
           end
         end
       end
