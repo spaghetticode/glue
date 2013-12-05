@@ -1,4 +1,4 @@
-class MessageIn
+class InboundMessage
   attr_reader :json
 
   def initialize(msg)
