@@ -3,7 +3,7 @@ require 'active_record'
 class Match < ActiveRecord::Base
   before_create :set_start_at
 
-  def close(attributes)
+  def close(attributes={})
      update_attributes attributes.merge(end_at: Time.now)
   end
 
