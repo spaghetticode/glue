@@ -4,6 +4,7 @@ require 'sinatra-websocket'
 require 'active_record'
 require_relative 'match'
 require_relative 'message_in'
+require 'pry'
 
 
 
@@ -14,7 +15,8 @@ set :sockets, []
 
 ActiveRecord::Base.establish_connection(
   adapter:  'sqlite3',
-  database: 'db/glue.sqlite3'
+  database: 'db/glue.sqlite3',
+  pool:     10
 )
 
 
