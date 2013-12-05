@@ -5,7 +5,9 @@ $(function() {
     clock: $('[data-clock]').FlipClock({autoStart: false}),
     init: function() {
       this.startAt = new Date($('#match').data('start'));
-      this.endAt   = new Date($('#match').data('end'));
+      if ($('#match').data('end')) {
+        this.endAt   = new Date($('#match').data('end'));
+      }
       this.setClock();
     },
     start: function(data) {
@@ -24,7 +26,13 @@ $(function() {
       this.clock.stop();
     },
     setClock: function() {
-      this.clock.setTime((this.endAt - this.startAt)/1000);
+      if (this.endAt) {
+        this.clock.setTime((this.endAt - this.startAt)/1000);
+      } else {
+        // match is not finished yet
+        this.clock.setTime((new Date() - this.startAt)/1000);
+        this.clock.start();
+      }
     },
     resetClock: function() {
       this.startAt = new Date();
