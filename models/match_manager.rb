@@ -1,21 +1,27 @@
 class MatchManager
-  attr_reader :match, :message
+  attr_reader :match, :message, :event, :data
 
-  def initialize(message)
-    @message = message
+  def initialize(msg)
+    @json  = JSON.parse(msg)
+    @event = @json.first
+    @data  = @json.last['data']
     set_match
   end
 
   def set_match
-   case message.event
+   case event
     when 'start_match'
-      @match = Match.create(message.data)
+      @match = Match.create(data)
     when 'update_match'
       @match = Match.last
-      @match.update_attributes(message.data)
+      @match.update_attributes(data)
     when 'close_match'
       @match = Match.last
-      @match.close(message.data)
+      @match.close(data)
     end
+  end
+
+  def outbond_message
+    %([["#{event}", #{@match.to_json}]])
   end
 end
