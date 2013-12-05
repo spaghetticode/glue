@@ -1,10 +1,8 @@
-require 'json'
 require 'sinatra'
-require 'sinatra-websocket'
 require 'active_record'
-require_relative 'models/match'
-require_relative 'models/inbound_message'
-require_relative 'models/match_manager'
+require 'sinatra-websocket'
+
+Dir['models/*'].each { |file| require_relative file }
 
 
 
@@ -31,11 +29,10 @@ get '/websocket' do
     request.websocket do |ws|
       ws.onopen { settings.sockets << ws }
       ws.onmessage do |msg|
-        message = InboundMessage.new(msg)
-        @match  = MatchManager.new(message).match
+        @manager = MatchManager.new(msg)
         EM.next_tick do
           settings.sockets.each do |s|
-            s.send %([["#{message.event}", #{@match.to_json}]]) # double array, to keep same format of the rails app
+            s.send @manager.outbound_message # double array, to keep same format of the rails app
           end
         end
       end
