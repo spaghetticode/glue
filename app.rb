@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'active_record'
 require 'sinatra-websocket'
 Dir['models/*'].each { |file| require_relative file }
 

@@ -1,3 +1,5 @@
+require 'active_record'
+
 class Match < ActiveRecord::Base
   before_create :set_start_at
 
