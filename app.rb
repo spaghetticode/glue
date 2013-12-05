@@ -6,9 +6,10 @@ Dir['models/*'].each { |file| require_relative file }
 set :server, 'thin'
 set :sockets, []
 
+
 ActiveRecord::Base.establish_connection(
   adapter:  'sqlite3',
-  database: 'db/glue.sqlite3',
+  database: "db/glue_#{Sinatra::Application.environment}.sqlite3",
   pool:     10
 )
 
