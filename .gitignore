@@ -11,10 +11,7 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
-# Ignore all logfiles, tempfiles and custom config files
-/log/*.log
-/tmp
-/spec/views/**/*
+# Ignore twitter config file with private data
 config/twitter.yml
 
 # Ignore OSX crap
