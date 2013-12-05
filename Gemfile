@@ -8,3 +8,8 @@ gem 'json'
 gem 'activerecord'
 gem 'sqlite3'
 gem 'twitter', '4.8.1'
+
+group :development,:test do
+  gem 'rspec'
+  gem 'rack-test'
+end
