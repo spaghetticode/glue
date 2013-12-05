@@ -1,3 +1,5 @@
+require 'json'
+
 class MatchManager
   attr_reader :match, :message, :event, :data
 
@@ -21,7 +23,7 @@ class MatchManager
     end
   end
 
-  def outbond_message
+  def outbound_message
     %([["#{event}", #{@match.to_json}]])
   end
 end

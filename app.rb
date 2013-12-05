@@ -1,22 +1,17 @@
 require 'sinatra'
 require 'active_record'
 require 'sinatra-websocket'
-
 Dir['models/*'].each { |file| require_relative file }
-
 
 
 set :server, 'thin'
 set :sockets, []
-
-
 
 ActiveRecord::Base.establish_connection(
   adapter:  'sqlite3',
   database: 'db/glue.sqlite3',
   pool:     10
 )
-
 
 
 get '/' do
