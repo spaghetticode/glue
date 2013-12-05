@@ -18,7 +18,8 @@ get '/' do
     :player_2 => 'falcao',
     :player_3 => 'pelé',
     :player_4 => 'bergomi',
-    :start_at => Time.now
+    :start_at => Time.now - 600,
+    :end_at   => Time.now
   )
   erb :index
 end

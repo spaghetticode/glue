@@ -9,8 +9,8 @@
   <script src="/js/match.js"></script>
 </head>
 <body>
-  <div data-wsuri="localhost:3000/websocket" id="match">
-    <div data-clock="true" id="clock" data-start="<%= @match.start_at %>" data-end="<%= @match.end_at %>"></div>
+  <div id="match" data-start="<%= @match.start_at %>" data-end="<%= @match.end_at %>">
+    <div data-clock="true" id="clock"></div>
     <div class="flexcontainer">
       <section id="set-1">
         <div class="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
