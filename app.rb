@@ -2,9 +2,8 @@ require 'json'
 require 'sinatra'
 require 'sinatra-websocket'
 require 'active_record'
-require_relative 'match'
-require_relative 'message_in'
-require 'pry'
+require_relative 'models/match'
+require_relative 'models/message_in'
 
 
 
