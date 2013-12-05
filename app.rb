@@ -1,26 +1,26 @@
 require 'json'
 require 'sinatra'
 require 'sinatra-websocket'
-
-set :server, 'thin'
-set :sockets, []
-
+require 'active_record'
 require_relative 'match'
 require_relative 'message_in'
 
 
-matches = []
+
+set :server, 'thin'
+set :sockets, []
+
+
+
+ActiveRecord::Base.establish_connection(
+  adapter:  'sqlite3',
+  database: 'db/glue.sqlite3'
+)
+
 
 
 get '/' do
-  @match = Match.new(
-    :player_1 => 'maradona',
-    :player_2 => 'falcao',
-    :player_3 => 'pelé',
-    :player_4 => 'bergomi',
-    :start_at => Time.now - 600,
-    :end_at   => Time.now
-  )
+  @match = Match.last
   erb :index
 end
 
@@ -32,15 +32,13 @@ get '/websocket' do
         message = MessageIn.new(msg)
         case message.event
         when 'start_match'
-          @match = Match.new(message.data)
-          matches << @match
+          @match = Match.create(message.data)
         when 'update_match'
-          @match = matches.last
-          @match.update(message.data)
+          @match = Match.last
+          @match.update_attributes(message.data)
         when 'close_match'
-          @match = matches.last
-          @match.update(message.data)
-          @match.close
+          @match = Match.last
+          @match.close(message.data)
         end
         EM.next_tick do
           settings.sockets.each do |s|
