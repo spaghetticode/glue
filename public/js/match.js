@@ -26,10 +26,11 @@ $(function() {
     setClock: function() {
       this.clock.setTime((this.endAt - this.startAt)/1000);
     },
-    resetClock: function(data) {
+    resetClock: function() {
       this.startAt = new Date();
       this.clock.setTime(0);
-      this.clock.start();
+      var self = this;
+      setTimeout(function() {self.clock.start()}, 200);
     },
     refresh: function(data) {
       $('#score_a').text(data.team_a_score);
@@ -49,10 +50,9 @@ $(function() {
     event = json[0];
     data  = json[1];
     switch (event) {
-      case 'start_match'  :  match.start(data);
-      case 'close_match'  :  match.close(data);
-      case 'update_match' :  match.update(data);
-      default: console.log('event', event, 'not recognized');
+      case 'start_match'  : match.start(data);
+      case 'close_match'  : match.close(data);
+      case 'update_match' : match.update(data);
     }
   };
 });
