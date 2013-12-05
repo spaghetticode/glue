@@ -1,6 +1,5 @@
+require 'active_record'
 class Match < ActiveRecord::Base
-  # attr_writer   :team_a_score, :team_b_score, :closed
-  # attr_accessor :player_1, :player_2, :player_3, :player_4, :start_at, :end_at
   before_create :set_start_at
 
   def close(attributes)
@@ -9,10 +8,6 @@ class Match < ActiveRecord::Base
 
   def closed?
     !!end_at
-  end
-
-  def to_json
-    %({"player_1": "#{player_1}","player_2": "#{player_2}","player_3": "#{player_3}","player_4": "#{player_4}", "team_a_score": "#{team_a_score}", "team_b_score": "#{team_b_score}", "closed": "#{closed?}"})
   end
 
   private

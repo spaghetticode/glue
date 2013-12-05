@@ -1,17 +1,17 @@
 require 'active_record'
-require_relative 'match'
+require_relative '../models/match'
 
 def connect
   ActiveRecord::Base.establish_connection(
-    :adapter => 'sqlite3',
-    :database =>  'db/glue.sqlite3'
+    adapter:  'sqlite3',
+    database: 'db/glue.sqlite3'
   )
   ActiveRecord::Base.logger = Logger.new(STDOUT)
   ActiveRecord::Migration.verbose = true
 end
 
 namespace :db do
-  desc "Migrate the database"
+  desc 'Migrate the database'
   task :migrate do
     connect
     ActiveRecord::Migrator.migrate('db/migrations')
