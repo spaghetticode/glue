@@ -6,10 +6,6 @@ class Match < ActiveRecord::Base
      update_attributes attributes.merge(end_at: Time.now)
   end
 
-  def closed?
-    !!end_at
-  end
-
   private
 
   def set_start_at
