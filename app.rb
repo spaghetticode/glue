@@ -3,9 +3,10 @@ require 'rack-flash'
 require 'sinatra-websocket'
 Dir['models/*'].each { |file| require_relative file }
 
-enable :sessions
 set :server, 'thin'
 set :sockets, []
+
+enable :sessions
 use Rack::Flash, sweep: true
 
 
