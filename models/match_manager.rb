@@ -15,13 +15,13 @@ class MatchManager
     when 'start_match'
       @match = Match.create(data)
       tweet "#{timestamp} A new match has started! #{twitter_names}"
-    when 'update_match'
+    when 'update_score'
       @match = Match.last
-      @match.update_attributes(data)
-    when 'close_match'
-      @match = Match.last
-      @match.close(data)
-      tweet "#{timestamp} Match result: #{match.team_a.score} - #{match.team_b.score} #{twitter_names}"
+      @match.update_score(data['team'])
+      if @match.closed?
+        @event = 'match_closed'
+        tweet "#{timestamp} Match result: #{match.team_a.score} - #{match.team_b.score} #{twitter_names}"
+      end
     end
   end
 
