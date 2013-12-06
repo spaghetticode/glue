@@ -59,8 +59,8 @@ $(function() {
     data  = json[1];
     switch (event) {
       case 'start_match'  : match.start(data);
-      case 'close_match'  : match.close(data);
-      case 'update_match' : match.update(data);
+      case 'close_match' : match.close(data);
+      case 'update_score' : match.update(data);
     }
   };
 });

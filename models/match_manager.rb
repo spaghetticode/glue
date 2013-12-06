@@ -1,4 +1,5 @@
 require 'json'
+require 'pry'
 
 class MatchManager
   attr_reader :match, :message, :event, :data
@@ -11,7 +12,7 @@ class MatchManager
   end
 
   def set_match
-   case event
+    case event
     when 'start_match'
       @match = Match.create(data)
       tweet "#{timestamp} A new match has started! #{twitter_names}"
@@ -19,8 +20,8 @@ class MatchManager
       @match = Match.last
       @match.update_score(data['team'])
       if @match.closed?
-        @event = 'match_closed'
-        tweet "#{timestamp} Match result: #{match.team_a.score} - #{match.team_b.score} #{twitter_names}"
+        @event = 'close_match'
+        tweet "#{timestamp} Match result: #{@match.team_a_score} - #{@match.team_b_score} #{twitter_names}"
       end
     end
   end
@@ -40,6 +41,6 @@ class MatchManager
   end
 
   def twitter_names
-    "@#{match.player_1}, @#{match.player_2} VS @#{match.player_3}, @#{match.player_4}"
+    "@#{@match.player_1}, @#{@match.player_2} VS @#{@match.player_3}, @#{@match.player_4}"
   end
 end
