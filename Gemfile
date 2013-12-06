@@ -8,8 +8,10 @@ gem 'json'
 gem 'activerecord'
 gem 'sqlite3'
 gem 'twitter', '4.8.1'
+gem 'rack-flash3', github: 'spaghetticode/rack-flash'
 
 group :development,:test do
   gem 'rspec'
   gem 'rack-test'
+  gem 'pry'
 end
