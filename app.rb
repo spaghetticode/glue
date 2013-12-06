@@ -1,7 +1,5 @@
 require 'sinatra'
-require 'rack-flash'
-require 'sinatra-websocket'
-Dir['models/*'].each { |file| require_relative file }
+require_relative 'environment'
 
 set :server, 'thin'
 set :sockets, []
@@ -10,11 +8,7 @@ enable :sessions
 use Rack::Flash, sweep: true
 
 
-ActiveRecord::Base.establish_connection(
-  adapter:  'sqlite3',
-  database: "db/glue_#{Sinatra::Application.environment}.sqlite3",
-  pool:     10
-)
+db_connect
 
 # homepage, scoreboard with the current match info
 get '/' do
