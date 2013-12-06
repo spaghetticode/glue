@@ -2,6 +2,18 @@ require 'sinatra'
 require 'rspec/core'
 require 'rspec/core/rake_task'
 require_relative 'models/match'
+require_relative 'models/table_settings'
+
+
+def connect
+  ActiveRecord::Base.establish_connection(
+    adapter:  'sqlite3',
+    database: "db/glue_#{Sinatra::Application.environment}.sqlite3"
+  )
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+  ActiveRecord::Migration.verbose = true
+end
+
 
 desc 'Run all specs in spec directory (excluding plugin specs)'
 RSpec::Core::RakeTask.new(:spec)
@@ -33,12 +45,3 @@ namespace :db do
 end
 
 task :default => :spec
-
-def connect
-  ActiveRecord::Base.establish_connection(
-    adapter:  'sqlite3',
-    database: "db/glue_#{Sinatra::Application.environment}.sqlite3"
-  )
-  ActiveRecord::Base.logger = Logger.new(STDOUT)
-  ActiveRecord::Migration.verbose = true
-end
