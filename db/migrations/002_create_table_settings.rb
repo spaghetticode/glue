@@ -3,7 +3,7 @@ class CreateTableSettings < ActiveRecord::Migration
     create_table :table_settings do |t|
       t.integer  :goals,       default: 8
       t.integer  :advantages,  default: 1
-      t.integer  :max_minutes, default: 0
+      t.integer  :max_minutes, default: nil
       t.timestamps
     end
   end

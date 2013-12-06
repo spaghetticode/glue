@@ -32,7 +32,7 @@ namespace :db do
   desc 'add sample data'
   task seed: :environment do
     connect
-    Match.delete_all
+    puts 'create sample match'
     Match.create(
       player_1: 'maradona',
       player_2: 'falcao',
@@ -41,6 +41,8 @@ namespace :db do
       start_at: Time.now - 600,
       end_at:   Time.now
     )
+    puts 'create table settings with default values'
+    TableSettings.create
   end
 end
 

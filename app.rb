@@ -1,10 +1,12 @@
 require 'sinatra'
+require 'rack-flash'
 require 'sinatra-websocket'
 Dir['models/*'].each { |file| require_relative file }
 
-
+enable :sessions
 set :server, 'thin'
 set :sockets, []
+use Rack::Flash, sweep: true
 
 
 ActiveRecord::Base.establish_connection(
@@ -13,12 +15,14 @@ ActiveRecord::Base.establish_connection(
   pool:     10
 )
 
-
+# homepage, scoreboard with the current match info
 get '/' do
   @match = Match.last
   erb :index
 end
 
+# websocket url to be called by the browser and table in order
+# to update the match
 get '/websocket' do
   if request.websocket?
     request.websocket do |ws|
@@ -37,4 +41,20 @@ get '/websocket' do
       end
     end
   end
+end
+
+# table settings
+get '/settings' do
+  @settings = TableSettings.current
+  erb :'settings/edit', layout: :admin
+end
+
+put '/settings/update' do
+  @settings = TableSettings.current
+  if @settings.update_attributes(params[:table_settings])
+    flash[:notice] = "Thanks for signing up!"
+  else
+    flash[:error] = @settings.error_messages.join(', ')
+  end
+  erb :'settings/edit', layout: :admin
 end
