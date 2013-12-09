@@ -1,5 +1,7 @@
 require 'sinatra'
 require_relative 'environment'
+require 'pry'
+
 
 set :server, 'thin'
 set :sockets, []
@@ -8,6 +10,7 @@ enable :sessions
 use Rack::Flash, sweep: true
 set :session_secret, '*&JHASGDIW%(^B234AJSHD'
 
+helpers WillPaginate::Sinatra::Helpers
 
 db_connect
 
@@ -44,6 +47,7 @@ get '/websocket' do
   end
 end
 
+
 # table settings
 get '/settings' do
   @settings = TableSettings.current
@@ -58,4 +62,36 @@ put '/settings/update' do
     flash[:error] = @settings.error_messages.join(', ')
   end
   erb :'settings/edit', layout: :admin
+end
+
+
+# players
+get '/players' do
+  @players = Player.paginate page: params[:page]
+  erb :'players/index', layout: :admin
+end
+
+get '/players/:id/edit' do
+  @player = Player.find(params[:id])
+  erb :'/players/edit', layout: :admin
+end
+
+put '/players/:id' do
+  @player = Player.find(params[:id])
+  if @player.update_attributes(params[:player])
+    flash[:notice] = 'Player data successfully updated.'
+  else
+    flash[:error] = @player.error_messages.join(', ')
+  end
+  erb :'players/edit', layout: :admin
+end
+
+delete '/players/:id' do
+  @player = Player.find(params[:id])
+  if @player.destroy
+    flash[:notice] = 'Player successfully removed.'
+  else
+    flash[:error] = 'Cannot remove this player.'
+  end
+  redirect '/players'
 end

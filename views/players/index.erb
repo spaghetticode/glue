@@ -1,0 +1,23 @@
+<h2>Players</h2>
+
+<table>
+  <tr>
+    <th>Twitter name</th>
+    <th>Rfid</th>
+  </tr>
+  <% @players.each do |player| %>
+    <tr>
+      <td><%= player.twitter_name %></td>
+      <td><%= player.rfid %></td>
+      <td><a href="/players/<%= player.id %>/edit">edit</a></td>
+      <td>
+        <form action="/players/<%= player.id %>" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="destroy">
+        </form>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @players %>
