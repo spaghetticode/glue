@@ -11,6 +11,11 @@ set :session_secret, '*&JHASGDIW%(^B234AJSHD'
 
 db_connect
 
+
+after do
+  ActiveRecord::Base.connection.close
+end
+
 # homepage, scoreboard with the current match info
 get '/' do
   @match = Match.last
