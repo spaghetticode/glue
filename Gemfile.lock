@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/spaghetticode/rack-flash.git
-  revision: 987ca539b0a882b38fc5f4674bc8d704cbfa72d4
+  revision: f74a18d4a652efe0e4fd5467957f9846878775b7
   specs:
     rack-flash3 (1.0.1)
       rack
