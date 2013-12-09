@@ -6,6 +6,7 @@ set :sockets, []
 
 enable :sessions
 use Rack::Flash, sweep: true
+set :session_secret, '*&JHASGDIW%(^B234AJSHD'
 
 
 db_connect
@@ -47,7 +48,7 @@ end
 put '/settings/update' do
   @settings = TableSettings.current
   if @settings.update_attributes(params[:table_settings])
-    flash[:notice] = "Thanks for signing up!"
+    flash[:notice] = 'Table settings updated.'
   else
     flash[:error] = @settings.error_messages.join(', ')
   end
