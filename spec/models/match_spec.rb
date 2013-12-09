@@ -1,78 +1,149 @@
 require 'spec_helper'
 
 describe Match do
-  let(:team)  { create_team }
-  let(:match) { create_match }
+  let(:now) { Time.new(2013, 12, 25, 23, 00, 00) }
+  let(:one_min_ago ) { Time.new(2013, 12, 25, 22, 58, 44) }
+  let(:settings) { double(advantages: 2, goals: 5, max_minutes: 10) }
 
-  it { should respond_to :winner }
-  it { should respond_to :team_a }
-  it { should respond_to :team_a }
 
-  (1..4).each do |n|
-    method = "player_#{n}"
-    it { should respond_to method }
+  it { subject.end_at.should be_nil }
+  it { subject.start_at.should be_nil }
+  it { subject.team_a_score.should be_zero }
+  it { subject.team_b_score.should be_zero }
+
+  it 'automatically starts match on creation' do
+    expect { subject.save }.to change(subject, :start_at)
   end
 
-  it 'is valid' do
-    expect { create_match }.to_not raise_error
+  it 'delegates #settings to TableSettings.current' do
+    TableSettings.should_receive :current
+    subject.settings
   end
 
-  describe '#start' do
-    it 'sets the match start time' do
-      expect { match.start }.to change(match, :start_at)
+  it 'delegates #now to Time' do
+    Time.should_receive :now
+    subject.now
+  end
+
+  describe '#minutes' do
+    before { subject.stub now: now }
+
+    describe 'when match has not started yet' do
+      it { subject.minutes.should be_zero }
+    end
+
+    it 'calculates the difference from #now and #start_at in minutes' do
+      subject.stub start_at: one_min_ago
+      subject.minutes.should == 1
     end
   end
 
   describe '#close' do
-    it 'sets the match end time' do
-      expect { match.close }.to change(match, :end_at)
+    it 'changes #end_at' do
+      expect { subject.close }.to change subject, :end_at
     end
   end
 
-  it 'requires teams' do
-    subject.should have(1).error_on :team_a
-    subject.should have(1).error_on :team_b
-  end
+  describe '#increase_team_score' do
+    it 'increases the team score' do
+      expect { subject.increase_team_score :a }.to change(subject, :team_a_score).by 1
+    end
 
-  context 'when #end_at is not set' do
-    it 'is is not closed' do
-      match.should_not be_closed
+    it 'doesnt change the other team score' do
+      expect { subject.increase_team_score :a }.to_not change(subject, :team_b_score).by 1
     end
   end
 
-  context 'when #end_at is set' do
-    before { match.close }
+  describe '#time_over?' do
+    context 'when settings.max_minutes is not set' do
+      before { subject.stub settings: double(max_minutes: nil) }
 
-    it 'is closed' do
-      match.should be_closed
+      it { should_not be_time_over }
     end
   end
 
-  describe '#current' do
-    it 'returns the latest match according to #start_at' do
-      recent = create_match :start_at => 1.hour.ago
-      create_match :start_at => 1.day.ago
-      Match.current.should == recent
+  describe '#closed?' do
+    before { subject.stub settings: settings }
+
+    context 'when the match has #end_at attribute' do
+      before { subject.end_at = Time.now }
+
+      it { should be_closed }
     end
-  end
 
-  describe '#update_score' do
-    let(:score) { {:team_a_score => '3', :team_b_score => '0'} }
+    context 'when time is over' do
+      before { subject.stub time_over?: true }
 
-    context 'when match is not closed' do
-      it 'updates score' do
-        expect { match.update_score(score) }.to change(match, :team_a_score).to 3
+      it { should be_closed }
+    end
+
+    context 'when max goals number is reached' do
+      before { subject.stub max_goals_reached?: true }
+
+      it { should_not be_closed }
+
+      context 'when also goals delta is reached' do
+        before { subject.stub goals_delta_reached?: true }
+
+        it { should be_closed }
+      end
+    end
+
+    context 'when only goals delta is reached' do
+      before { subject.stub goals_delta_reached?: true }
+
+      it { should_not be_closed }
+    end
+
+    describe '#goals_delta_reached?' do
+      context 'when delta is equal or greater than settings advantages' do
+        before { subject.team_a_score = 2}
+
+        it { subject.goals_delta_reached?.should be_true }
       end
 
-      it 'returns true' do
-        match.update_score(score).should be_true
+      context 'when delta is lower than settings advantages' do
+        it { subject.goals_delta_reached?.should be_false }
       end
     end
 
-    context 'when match is closed' do
-      it 'returns false' do
-        match.close
-        expect { match.update_score(score) }.to_not change(match, :team_a_score).to 3
+    describe '#max_goals_reached?' do
+      context 'when a team has reached the settings goals value' do
+        before { subject.team_b_score = subject.settings.goals }
+
+        it { subject.max_goals_reached?.should be_true }
+      end
+
+      context 'when the team has not reached the settings goals value' do
+        it { subject.max_goals_reached?.should be_false }
+      end
+    end
+
+    describe '#update_score' do
+      before { subject.stub settings: settings }
+
+      context 'when match is closed' do
+        before { subject.stub(closed?: true) }
+
+        it 'returns nil' do
+          subject.update_score(:b).should be_nil
+        end
+      end
+
+      context 'when increasing the score should close the match' do
+        it 'sets #end_at attribute' do
+          subject.team_a_score = 4
+          subject.team_b_score = 2
+          expect { subject.update_score(:a) }.to change subject, :end_at
+        end
+      end
+
+      context 'when increasing the score should not close the match' do
+        it 'doesnt set #end_at attribute' do
+          subject.team_a_score = 0
+          subject.team_b_score = 2
+          expect { subject.update_score(:a) }.to_not change subject, :end_at
+        end
       end
     end
   end

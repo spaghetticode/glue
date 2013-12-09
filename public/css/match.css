@@ -1,0 +1,255 @@
+body {
+  background: transparent url(/images/background.jpg) no-repeat 0 0;
+  background-size: 100%;
+  color: #fff;
+  font-family: arial; }
+
+.flexcontainer {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center; }
+
+.hi-icon-wrap {
+  display: inline-block; }
+  .hi-icon-wrap ul {
+    list-style-type: none; }
+    .hi-icon-wrap ul li {
+      margin-bottom: 20px; }
+      .hi-icon-wrap ul li.team {
+        font-size: 40px;
+        margin-bottom: 40px; }
+      .hi-icon-wrap ul li.player {
+        font-size: 50px; }
+
+#set-1 ul {
+  text-align: right;
+  margin: 40px 0;
+  padding-right: 250px; }
+
+#set-2 ul {
+  text-align: left;
+  margin: 40px 0;
+  padding-left: 230px; }
+
+.hi-icon-wrap {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0em 0 0em;
+  margin: 20% 40px; }
+
+.hi-icon {
+  display: inline-block;
+  cursor: pointer;
+  margin: 15px 100px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  line-height: 250px;
+  font-size: 150px;
+  text-decoration: none;
+  font-family: arial; }
+
+.hi-icon:after {
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  content: '';
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box; }
+
+.hi-icon:before {
+  speak: none;
+  line-height: 200px;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  display: block;
+  -webkit-font-smoothing: antialiased; }
+
+/* Effect 1 */
+.hi-icon-effect-1 .hi-icon {
+  background: blue;
+  -webkit-transition: -webkit-transform ease-out 0.1s, background 0.2s;
+  -moz-transition: -moz-transform ease-out 0.1s, background 0.2s;
+  transition: transform ease-out 0.1s, background 0.2s; }
+
+.hi-icon-effect-1 .hi-icon:after {
+  top: 0;
+  left: 0;
+  padding: 0;
+  z-index: -1;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  -webkit-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9); }
+
+.no-touch .hi-icon-effect-1 .hi-icon:hover {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-transform: scale(0.93);
+  -moz-transform: scale(0.93);
+  -ms-transform: scale(0.93);
+  transform: scale(0.93);
+  color: #fff; }
+
+.hi-icon-effect-1 .hi-icon:hover:after {
+  -webkit-animation: sonarEffect 1.3s ease-out 75ms;
+  -moz-animation: sonarEffect 1.3s ease-out 75ms;
+  animation: sonarEffect 1.3s ease-out 75ms; }
+
+@-webkit-keyframes sonarEffect {
+  0% {
+    opacity: 0.3; }
+
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc, 0 0 0 10px rgba(255, 255, 255, 0.5); }
+
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc, 0 0 0 10px rgba(255, 255, 255, 0.5);
+    -webkit-transform: scale(1.5);
+    opacity: 0; } }
+
+@-moz-keyframes sonarEffect {
+  0% {
+    opacity: 0.3; }
+
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc, 0 0 0 10px rgba(255, 255, 255, 0.5); }
+
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc, 0 0 0 10px rgba(255, 255, 255, 0.5);
+    -moz-transform: scale(1.5);
+    opacity: 0; } }
+
+@keyframes sonarEffect {
+  0% {
+    opacity: 0.3; }
+
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc, 0 0 0 10px rgba(255, 255, 255, 0.5); }
+
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc, 0 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.5);
+    opacity: 0; } }
+
+/* Effect 2 */
+.hi-icon-effect-2 .hi-icon {
+  background: red;
+  -webkit-transition: -webkit-transform ease-out 0.1s, background 0.2s;
+  -moz-transition: -moz-transform ease-out 0.1s, background 0.2s;
+  transition: transform ease-out 0.1s, background 0.2s; }
+
+.hi-icon-effect-2 .hi-icon:after {
+  top: 0;
+  left: 0;
+  padding: 0;
+  z-index: -1;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  -webkit-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9); }
+
+.no-touch .hi-icon-effect-2 .hi-icon:hover {
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-transform: scale(0.93);
+  -moz-transform: scale(0.93);
+  -ms-transform: scale(0.93);
+  transform: scale(0.93);
+  color: #fff; }
+
+.hi-icon-effect-2 .hi-icon:hover:after {
+  -webkit-animation: sonarEffect 1.3s ease-out 75ms;
+  -moz-animation: sonarEffect 1.3s ease-out 75ms;
+  animation: sonarEffect 1.3s ease-out 75ms; }
+
+@-webkit-keyframes sonarEffect {
+  0% {
+    opacity: 0.3; }
+
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px white, 0 0 0 10px rgba(255, 255, 255, 0.5); }
+
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px white, 0 0 0 10px rgba(255, 255, 255, 0.5);
+    -webkit-transform: scale(1.5);
+    opacity: 0; } }
+
+@-moz-keyframes sonarEffect {
+  0% {
+    opacity: 0.3; }
+
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px white, 0 0 0 10px rgba(255, 255, 255, 0.5); }
+
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px white, 0 0 0 10px rgba(255, 255, 255, 0.5);
+    -moz-transform: scale(1.5);
+    opacity: 0; } }
+
+@keyframes sonarEffect {
+  0% {
+    opacity: 0.3; }
+
+  40% {
+    opacity: 0.5;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc, 0 0 0 10px rgba(255, 255, 255, 0.5); }
+
+  100% {
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1), 0 0 10px 10px #3851bc, 0 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.5);
+    opacity: 0; } }
+
+.no-touch .hi-icon-effect-9b .hi-icon:hover {
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
+  color: #fff; }
+
+#set-9 {
+  background: #96a94b; }
+
+@media screen and (max-width: 800px) {
+  .hi-icon {
+    margin: 15px !important; }
+
+  .container > section {
+    padding: 20em 1em; } }
+@media screen and (max-width: 25em) {
+  .codrops-icon span {
+    display: none; } }
+.btn-navbar, .brand, .nav-collapse, .nav, .sidebar-nav {
+  display: none; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 10px; }
+  footer a {
+    color: white; }
+
+#match {
+  margin: 0 auto; }
+
+#clock {
+  width: 460px;
+  margin: 40px auto; }

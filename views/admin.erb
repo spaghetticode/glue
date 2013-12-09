@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Admin - Biliarduino </title>
+  <script src="/js/jquery.js"></script>
+</head>
+<body>
+  <% flash.each do |type, message| %>
+    <div class="<%= type %>"><%= message %></div>
+  <% end %>
+  <%= yield %>
+  <footer><p>&copy; <a href="https://www.mikamai.com">MIKAMAI 2013</a></
+</body>
+</html>
