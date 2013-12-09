@@ -15,4 +15,5 @@ group :development,:test do
   gem 'rspec'
   gem 'rack-test'
   gem 'pry'
+  gem 'database_cleaner'
 end
