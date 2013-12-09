@@ -51,4 +51,12 @@ it's the default homepage, head your browser at ```http://localhost:3000```
 The configurable settings are available at ```http://localhost:3000/settings```
 
 
+## TODO
+
+* add reset button
+* add buttons to reduce score
+* associate matches and players
+* make time limited matches work
+
+
 ![table football](http://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Baby_foot_artlibre_jnl.jpg/450px-Baby_foot_artlibre_jnl.jpg)
