@@ -85,6 +85,7 @@ GEM
       multi_json (~> 1.0)
       simple_oauth (~> 0.2)
     tzinfo (0.3.38)
+    will_paginate (3.0.5)
 
 PLATFORMS
   ruby
@@ -103,3 +104,4 @@ DEPENDENCIES
   sqlite3
   thin
   twitter (= 4.8.1)
+  will_paginate

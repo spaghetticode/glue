@@ -2,6 +2,9 @@ require 'json'
 require 'rack-flash'
 require 'active_record'
 require 'sinatra-websocket'
+require 'will_paginate'
+require 'will_paginate/active_record'
+require 'will_paginate/view_helpers/sinatra'
 Dir['models/*'].each { |file| require_relative file }
 
 def db_connect
