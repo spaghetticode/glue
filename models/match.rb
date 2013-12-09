@@ -43,7 +43,7 @@ class Match < ActiveRecord::Base
   end
 
   def time_over?
-    settings.max_minutes ? minutes > settings.max_minutes : false
+    settings.max_minutes ? minutes >= settings.max_minutes : false
   end
 
   private
