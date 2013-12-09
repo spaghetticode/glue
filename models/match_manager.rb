@@ -1,6 +1,3 @@
-require 'json'
-require 'pry'
-
 class MatchManager
   attr_reader :match, :message, :event, :data
 
