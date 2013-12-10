@@ -15,7 +15,7 @@ describe RegisteredPlayer do
   end
 
   describe '::find_or_create_from_data' do
-    let(:data) { {type: 'RegisteredPlayer', rfid: '1234'} }
+    let(:data) { {'type' => 'RegisteredPlayer', 'rfid' => '1234'} }
 
     context 'when matching record exists' do
       let!(:record) { RegisteredPlayer.create rfid: '1234' }

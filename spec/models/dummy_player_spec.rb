@@ -29,7 +29,7 @@ describe DummyPlayer do
   end
 
   describe '::find_or_create_from_data' do
-    let(:data) { {type: 'DummyPlayer', twitter_name: 'myname'} }
+    let(:data) { {'type' => 'DummyPlayer', 'twitter_name' => 'myname'} }
 
     context 'when matching record exists' do
       let!(:record) { DummyPlayer.create twitter_name: 'myname' }

@@ -2,6 +2,7 @@ class RegisteredPlayer < Player
    validates :rfid, presence: true
 
   def self.find_or_create_from_data(data)
-    find_by_rfid(data[:rfid]) || create(rfid: data[:rfid])
+    rfid = data['rfid']
+    find_by_rfid(rfid) || create(rfid: rfid)
   end
 end

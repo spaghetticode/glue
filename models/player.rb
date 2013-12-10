@@ -2,7 +2,7 @@ class Player < ActiveRecord::Base
   before_save :set_twitter_name
 
   def self.from_data(data)
-    const_get(data[:type]).find_or_create_from_data data
+    const_get(data['type']).find_or_create_from_data data
   end
 
   def self.add_at(name)

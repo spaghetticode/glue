@@ -12,7 +12,7 @@ describe Player do
   end
 
   describe '::from_data' do
-    let(:data) { {twitter_name: 'asd', type: 'DummyPlayer'} }
+    let(:data) { {'twitter_name' => 'asd', 'type' => 'DummyPlayer'} }
 
     it 'delegates to the subclass' do
       DummyPlayer.should_receive :find_or_create_from_data
