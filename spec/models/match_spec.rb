@@ -119,6 +119,24 @@ describe Match do
       end
     end
 
+    describe '#player_1_name' do
+      let(:player) { DummyPlayer.new twitter_name: 'asd' }
+
+      it 'delegates to player_1 twitter name' do
+        player.should_receive :twitter_name
+        Match.new(player_1: player).player_1_name
+      end
+
+      context 'when player has no twitter_name' do
+        before {player.stub twitter_name: nil }
+
+        it 'delegates also to player_1 rfid' do
+          player.should_receive :rfid
+          Match.new(player_1: player).player_1_name
+        end
+      end
+    end
+
     describe '#update_score' do
       before { subject.stub settings: settings }
 

@@ -16,14 +16,14 @@
         <div class="hi-icon-wrap hi-icon-effect-1 hi-icon-effect-1a">
           <a class="hi-icon" href="#set-1" id="score_a"><%= @match.team_a_score %></a>
           <ul>
-            <li class="player" id="player_1">@<%= @match.player_1 %></li><li class="player" id="player_2">@<%= @match.player_2 %></li>
+            <li class="player" id="player_1"><%= @match.player_1_name %></li><li class="player" id="player_2"><%= @match.player_2_name %></li>
           </ul>
         </div>
       </section>
       <section id="set-2"><div class="hi-icon-wrap hi-icon-effect-2 hi-icon-effect-2a">
         <a class="hi-icon" href="#set-2" id="score_b"><%= @match.team_b_score %></a>
         <ul>
-          <li class="player" id="player_3">@<%= @match.player_3 %></li><li class="player" id="player_4">@<%= @match.player_4 %></li>
+          <li class="player" id="player_3"><%= @match.player_3_name %></li><li class="player" id="player_4"><%= @match.player_4_name %></li>
         </ul>
       </div>
     </section>

@@ -1,7 +1,12 @@
 class Match < ActiveRecord::Base
   before_create :set_start_at
   4.times do |n|
-    belongs_to :"player_#{n+1}", class_name: 'Player'
+    association = :"player_#{n+1}"
+    belongs_to association, class_name: 'Player'
+
+    define_method "#{association}_name" do
+      send(association).twitter_name or send(association).rfid
+    end
   end
 
   def self.create_with_players(params)
