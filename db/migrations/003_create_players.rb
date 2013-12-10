@@ -6,6 +6,6 @@ class CreatePlayers < ActiveRecord::Migration
   end
 
   def down
-    drop_table :matches
+    drop_table :players
   end
 end
