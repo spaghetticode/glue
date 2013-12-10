@@ -24,8 +24,7 @@ class Match < ActiveRecord::Base
   end
 
   def close
-    self.end_at = now
-    save
+    update_attribute :end_at, now
   end
 
   def increase_team_score(a_or_b)
