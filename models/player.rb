@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
-  scope :without_rfid, lambda { where rfid: nil }
-
   before_save :set_twitter_name
+
+  has_many :matches
 
   private
 
