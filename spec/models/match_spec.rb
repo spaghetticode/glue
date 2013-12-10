@@ -168,14 +168,24 @@ describe Match do
     describe '::create_with_players' do
       let(:dummy_params) do
         (1..4).to_a.inject Hash.new do |hash, n|
-          hash.update "player_#{n}" => {:twitter_name => "asd#{n}", :type => 'DummyPlayer'}
+          hash.update "player_#{n}" => {'twitter_name' => "asd#{n}", 'type' => 'DummyPlayer'}
         end
       end
 
       it 'creates new players when they dont exist' do
         expect do
           Match.create_with_players(dummy_params)
-        end.to change(DummyPlayer, :count).by(4)
+        end.to change(DummyPlayer, :count).by 4
+      end
+
+      it 'creates a new match' do
+        expect do
+          Match.create_with_players(dummy_params)
+        end.to change(Match, :count).by 1
+      end
+
+      it 'returns a match' do
+        Match.create_with_players(dummy_params).should be_a Match
       end
     end
   end

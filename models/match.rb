@@ -14,6 +14,7 @@ class Match < ActiveRecord::Base
       params.each_pair do |attribute, player_data|
         match.send "#{attribute}=", Player.from_data(player_data)
       end
+      match.save
     end
   end
 
