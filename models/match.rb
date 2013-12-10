@@ -1,5 +1,16 @@
 class Match < ActiveRecord::Base
   before_create :set_start_at
+  4.times do |n|
+    belongs_to :"player_#{n+1}", class_name: 'Player'
+  end
+
+  def self.create_with_players(params)
+    new.tap do |match|
+      params.each_pair do |attribute, player_data|
+        match.send "#{attribute}=", Player.from_data(player_data)
+      end
+    end
+  end
 
   def update_score(a_or_b)
     return if closed?

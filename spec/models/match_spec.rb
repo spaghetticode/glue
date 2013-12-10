@@ -146,5 +146,19 @@ describe Match do
         end
       end
     end
+
+    describe '::create_with_players' do
+      let(:dummy_params) do
+        (1..4).to_a.inject Hash.new do |hash, n|
+          hash.update "player_#{n}" => {:twitter_name => "asd#{n}", :type => 'DummyPlayer'}
+        end
+      end
+
+      it 'creates new players when they dont exist' do
+        expect do
+          Match.create_with_players(dummy_params)
+        end.to change(DummyPlayer, :count).by(4)
+      end
+    end
   end
 end
