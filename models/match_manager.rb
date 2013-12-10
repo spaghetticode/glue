@@ -11,7 +11,7 @@ class MatchManager
   def set_match
     case event
     when 'start_match'
-      @match = Match.create(data)
+      @match = Match.create_with_players(data)
       tweet "#{timestamp} A new match has started! #{twitter_names}"
     when 'update_score'
       @match = Match.last
