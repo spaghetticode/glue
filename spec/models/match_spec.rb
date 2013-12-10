@@ -62,6 +62,15 @@ describe Match do
     end
   end
 
+  describe '#as_json' do
+    it 'includes expected methods' do
+      1.upto 4 do |n|
+        subject.should_receive "player_#{n}_name"
+      end
+      subject.as_json
+    end
+  end
+
   describe '#closed?' do
     before { subject.stub settings: settings }
 
