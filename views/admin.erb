@@ -5,6 +5,10 @@
   <script src="/js/jquery.js"></script>
 </head>
 <body>
+  <nav>
+    <a href="/settings">Settings</a>
+    <a href="/players">Players</a>
+  </nav>
   <% flash.each do |type, message| %>
     <div class="<%= type %>"><%= message %></div>
   <% end %>

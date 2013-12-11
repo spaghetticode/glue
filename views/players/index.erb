@@ -4,11 +4,13 @@
   <tr>
     <th>Twitter name</th>
     <th>Rfid</th>
+    <th>Type</th>
   </tr>
   <% @players.each do |player| %>
     <tr>
       <td><%= player.twitter_name %></td>
       <td><%= player.rfid %></td>
+      <td><%= player.type %></td>
       <td><a href="/players/<%= player.id %>/edit">edit</a></td>
       <td>
         <form action="/players/<%= player.id %>" method="POST">
