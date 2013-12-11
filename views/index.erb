@@ -9,6 +9,11 @@
   <script src="/js/match.js"></script>
 </head>
 <body>
+  <div id="menu_trigger"></div>
+  <nav>
+    <a href="/settings">Settings</a>
+    <a href="/players">Players</a>
+  </nav>
   <div id="match" data-start="<%= @match.start_at %>" data-end="<%= @match.end_at %>">
     <div data-clock="true" id="clock"></div>
     <div class="flexcontainer">
