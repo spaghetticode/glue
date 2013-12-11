@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-  before_save :set_twitter_name
+  before_save :set_twitter_name, :set_class_type
 
   def self.from_data(data)
     const_get(data['type']).find_or_create_from_data data
@@ -20,5 +20,9 @@ class Player < ActiveRecord::Base
     if twitter_name
       self.twitter_name = self.class.remove_at_char(twitter_name)
     end
+  end
+
+  def set_class_type
+    self.type = 'RegisteredPlayer' if rfid.present?
   end
 end

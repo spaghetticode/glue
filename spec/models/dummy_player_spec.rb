@@ -49,4 +49,12 @@ describe DummyPlayer do
       end
     end
   end
+
+  context 'when adding the rfid value' do
+    it 'changes the player type to registered' do
+      player = DummyPlayer.create(twitter_name: 'babbo')
+      player.update_attribute :rfid, '12345'
+      Player.find(player.id).should be_a RegisteredPlayer
+    end
+  end
 end
