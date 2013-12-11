@@ -1,5 +1,5 @@
 $(function() {
-  var ws, json, event, data;
+  var ws, json, event, data, nav, height;
 
   window.match = {
     clock: $('[data-clock]').FlipClock({autoStart: false}),
@@ -59,8 +59,26 @@ $(function() {
     data  = json[1];
     switch (event) {
       case 'start_match'  : match.start(data);
-      case 'close_match' : match.close(data);
+      case 'close_match'  : match.close(data);
       case 'update_score' : match.update(data);
     }
   };
+
+
+
+  nav    = $('nav');
+  height = parseInt(nav.css('height'), 10);
+
+  $('#menu_trigger, nav').mouseenter(function() {
+    clearTimeout(this.to);
+    nav.stop().slideDown('fast');
+    this.to = null;
+  })
+
+  nav.mouseout(function(event) {
+    if (this.to) return;
+    if (event.originalEvent.y > height) {
+      this.to = setTimeout(function() {nav.stop().slideUp('fast')}, 500);
+    }
+  });
 });
