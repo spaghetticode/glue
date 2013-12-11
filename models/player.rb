@@ -5,8 +5,8 @@ class Player < ActiveRecord::Base
     const_get(data['type']).find_or_create_from_data data
   end
 
-  def self.add_at(name)
-    name[0] == '@' ? name : name.prepend('@')
+  def self.remove_at_char(name)
+    name[0] == '@' ? name[1..-1] : name
   end
 
 
@@ -18,7 +18,7 @@ class Player < ActiveRecord::Base
 
   def set_twitter_name
     if twitter_name
-      self.twitter_name = self.class.add_at(twitter_name)
+      self.twitter_name = self.class.remove_at_char(twitter_name)
     end
   end
 end
