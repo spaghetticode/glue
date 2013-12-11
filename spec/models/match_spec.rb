@@ -72,7 +72,7 @@ describe Match do
 
     it 'has expected keys' do
       %w[end_at start_at player_1 player_2 player_3 player_4 team_a_score team_b_score].each do |key|
-        subject.as_json.keys.should include key.to_sym
+        subject.as_json.keys.should include key
       end
     end
   end

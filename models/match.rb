@@ -61,16 +61,12 @@ class Match < ActiveRecord::Base
   end
 
   def as_json(opts={})
-    {
-      end_at:   end_at,
-      start_at: start_at,
-      player_1: player_1_name,
-      player_2: player_2_name,
-      player_3: player_3_name,
-      player_4: player_4_name,
-      team_a_score: team_a_score,
-      team_b_score: team_b_score,
-    }.merge(opts)
+    super.merge(
+      'player_1' => player_1_name,
+      'player_2' => player_2_name,
+      'player_3' => player_3_name,
+      'player_4' => player_4_name
+    )
   end
 
   private
