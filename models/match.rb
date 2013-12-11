@@ -5,7 +5,7 @@ class Match < ActiveRecord::Base
     belongs_to association, class_name: 'Player'
 
     define_method "#{association}_name" do
-      send(association).twitter_name or send(association).rfid
+      send(association).twitter_name or send(association).rfid if send(association)
     end
   end
 
@@ -62,13 +62,14 @@ class Match < ActiveRecord::Base
 
   def as_json(opts={})
     {
-      id:       id,
       end_at:   end_at,
       start_at: start_at,
       player_1: player_1_name,
       player_2: player_2_name,
       player_3: player_3_name,
-      player_4: player_4_name
+      player_4: player_4_name,
+      team_a_score: team_a_score,
+      team_b_score: team_b_score,
     }.merge(opts)
   end
 

@@ -144,6 +144,12 @@ describe Match do
           Match.new(player_1: player).player_1_name
         end
       end
+
+      context 'when match has no player 1' do
+        it 'is nil' do
+          Match.new.player_1_name.should be_nil
+        end
+      end
     end
 
     describe '#update_score' do
