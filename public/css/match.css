@@ -100,7 +100,7 @@ body {
   -ms-transform: scale(0.9);
   transform: scale(0.9); }
 
-.no-touch .hi-icon-effect-1 .hi-icon:hover {
+.no-touch .hi-icon-effect-1 .hi-icon.sonar {
   background: rgba(255, 255, 255, 0.05);
   -webkit-transform: scale(0.93);
   -moz-transform: scale(0.93);
@@ -108,7 +108,7 @@ body {
   transform: scale(0.93);
   color: #fff; }
 
-.hi-icon-effect-1 .hi-icon:hover:after {
+.hi-icon-effect-1 .hi-icon.sonar:after {
   -webkit-animation: sonarEffect 1.3s ease-out 75ms;
   -moz-animation: sonarEffect 1.3s ease-out 75ms;
   animation: sonarEffect 1.3s ease-out 75ms; }
@@ -171,7 +171,7 @@ body {
   -ms-transform: scale(0.9);
   transform: scale(0.9); }
 
-.no-touch .hi-icon-effect-2 .hi-icon:hover {
+.no-touch .hi-icon-effect-2 .hi-icon.sonar {
   background: rgba(255, 255, 255, 0.05);
   -webkit-transform: scale(0.93);
   -moz-transform: scale(0.93);
@@ -179,7 +179,7 @@ body {
   transform: scale(0.93);
   color: #fff; }
 
-.hi-icon-effect-2 .hi-icon:hover:after {
+.hi-icon-effect-2 .hi-icon.sonar:after {
   -webkit-animation: sonarEffect 1.3s ease-out 75ms;
   -moz-animation: sonarEffect 1.3s ease-out 75ms;
   animation: sonarEffect 1.3s ease-out 75ms; }
@@ -223,7 +223,7 @@ body {
     transform: scale(1.5);
     opacity: 0; } }
 
-.no-touch .hi-icon-effect-9b .hi-icon:hover {
+.no-touch .hi-icon-effect-9b .hi-icon.sonar {
   box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.4);
   color: #fff; }
 
