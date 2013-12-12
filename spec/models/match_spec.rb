@@ -39,6 +39,8 @@ describe Match do
   end
 
   describe '#close' do
+    before { subject.stub update_winners_score: nil, update_losers_score: nil }
+
     it 'changes #end_at' do
       expect { subject.close }.to change subject, :end_at
     end
@@ -170,9 +172,13 @@ describe Match do
       end
 
       context 'when increasing the score should close the match' do
-        it 'sets #end_at attribute' do
+        before do
+          4.times { |n| subject.send "player_#{n+1}=", Player.new }
           subject.team_a_score = 4
           subject.team_b_score = 2
+        end
+
+        it 'sets #end_at attribute' do
           expect { subject.update_score(:a) }.to change subject, :end_at
         end
       end
@@ -207,6 +213,59 @@ describe Match do
 
       it 'returns a match' do
         Match.create_with_players(dummy_params).should be_a Match
+      end
+    end
+  end
+
+  context 'when match is not closed' do
+    it { subject.losers.should be_nil }
+    it { subject.winners.should be_nil }
+    it { subject.losers_score.should be_nil }
+    it { subject.winners_score.should be_nil }
+  end
+
+  context 'when match is closed' do
+    before { subject.end_at = Time.now }
+
+    context 'when team_a is winner' do
+      before do
+        subject.team_a_score = 5
+        subject.team_b_score = 2
+      end
+
+      it { subject.winners_score.should == 5 }
+      it { subject.losers_score.should == 2 }
+      it { subject.should be_team_a_winner }
+
+      it '#losers includes player_3 and player_4' do
+        4.times { |n| subject.send("player_#{n+1}=", Player.new) }
+        subject.losers.should == [subject.player_3, subject.player_4]
+      end
+
+      it '#winners includes player_1 and player_2' do
+        4.times { |n| subject.send("player_#{n+1}=", Player.new) }
+        subject.winners.should == [subject.player_1, subject.player_2]
+      end
+    end
+
+    context 'when team_b is winner' do
+      before do
+        subject.team_a_score = 2
+        subject.team_b_score = 5
+      end
+
+      it { subject.winners_score.should == 5 }
+      it { subject.losers_score.should == 2 }
+      it { subject.should_not be_team_a_winner }
+
+      it '#losers includes player_1 and player_2' do
+        4.times { |n| subject.send("player_#{n+1}=", Player.new) }
+        subject.losers.should == [subject.player_1, subject.player_2]
+      end
+
+      it '#winners includes player_3 and player_4' do
+        4.times { |n| subject.send("player_#{n+1}=", Player.new) }
+        subject.winners.should == [subject.player_3, subject.player_4]
       end
     end
   end
