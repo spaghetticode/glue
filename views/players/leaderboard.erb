@@ -6,9 +6,14 @@
     <th>Name</th>
     <th>Total score</th>
   </tr>
-  <% @players.each_with_index do |player, i| %>
+  <% status = {rank: 1, previous_score: 0 } %>
+  <% @players.each_with_object status do |player, status| %>
+    <% if player.total_score < status[:previous_score] %>
+      <% status[:rank] = status[:rank] + 1 %>
+    <% end %>
+    <%  status[:previous_score] = player.total_score %>
     <tr>
-      <td><%= i+1 %></td>
+      <td><%= status[:rank] %></td>
       <td><%= player.name %></td>
       <td><%= player.total_score %></td>
     </tr>
