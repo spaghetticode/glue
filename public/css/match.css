@@ -256,7 +256,7 @@ footer a {
   margin: 40px auto; }
 
 
-.flip-clock-divider.hours, .flip-clock-divider.minutes, .flip-clock-divider.seconds {
+.flip-clock-label {
   display: none;
 }
 
