@@ -5,10 +5,11 @@
     <th>Twitter name</th>
     <th>Rfid</th>
     <th>Type</th>
+    <th colspan="2">Actions</th>
   </tr>
   <% @players.each do |player| %>
     <tr>
-      <td><%= player.twitter_name %></td>
+      <td><%= player.name %></td>
       <td><%= player.rfid %></td>
       <td><%= player.type %></td>
       <td><a href="/players/<%= player.id %>/edit">edit</a></td>
