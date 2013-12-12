@@ -71,6 +71,11 @@ get '/players' do
   erb :'players/index', layout: :admin
 end
 
+get '/leaderboard' do
+  @players = Player.by_total_score.paginate page: params[:page]
+  erb :'players/leaderboard', layout: :admin
+end
+
 get '/players/:id/edit' do
   @player = Player.find(params[:id])
   erb :'/players/edit', layout: :admin

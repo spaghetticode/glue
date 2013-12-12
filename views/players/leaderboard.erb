@@ -1,0 +1,18 @@
+<h2>Leaderboard</h2>
+
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Total score</th>
+  </tr>
+  <% @players.each_with_index do |player, i| %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= player.name %></td>
+      <td><%= player.total_score %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @players %>
