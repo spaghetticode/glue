@@ -9,6 +9,8 @@ class Match < ActiveRecord::Base
     end
   end
 
+  scope :recent, -> { limit(5).order('created_at desc') }
+
   def self.create_with_players(params)
     new.tap do |match|
       params.each_pair do |attribute, player_data|
