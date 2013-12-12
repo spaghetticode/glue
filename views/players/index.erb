@@ -6,7 +6,7 @@
     <th>Rfid</th>
     <th>Type</th>
     <th>Total score</th>
-    <th colspan="2">Actions</th>
+    <th colspan="3">Actions</th>
   </tr>
   <% @players.each do |player| %>
     <tr>
@@ -14,6 +14,7 @@
       <td><%= player.rfid %></td>
       <td><%= player.type %></td>
       <td><%= player.total_score %></td>
+      <td><a href="/players/<%= player.id %>">recent matches</a></td>
       <td><a href="/players/<%= player.id %>/edit">edit</a></td>
       <td>
         <form action="/players/<%= player.id %>" method="POST">

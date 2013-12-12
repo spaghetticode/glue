@@ -91,6 +91,11 @@ put '/players/:id' do
   erb :'players/edit', layout: :admin
 end
 
+get '/players/:id' do
+  @player = Player.find(params[:id])
+  erb :'players/show', layout: :admin
+end
+
 delete '/players/:id' do
   @player = Player.find(params[:id])
   if @player.destroy

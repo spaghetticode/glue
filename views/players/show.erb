@@ -1,0 +1,31 @@
+<h2><%= @player.name %></h2>
+
+<p>total score: <%= @player.total_score %></p>
+
+<h3>Matches</h3>
+<table>
+  <tr>
+    <th>created at</th>
+    <th colspan="2">winners</th>
+    <th colspan="2">losers</th>
+    <th>end at</th>
+  </tr>
+  <% @player.matches.recent.each do |match| %>
+    <tr>
+      <td></td>
+      <td colspan="2"><%= match.winners_score %></td>
+      <td colspan="2"><%= match.losers_score %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><%= match.start_at %></td>
+      <% match.winners.each do |winner| %>
+        <td><%= winner.name %></td>
+      <% end %>
+      <% match.losers.each do |loser| %>
+        <td><%= loser.name %></td>
+      <% end %>
+      <td><%= match.end_at %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,4 +1,6 @@
 class Player < ActiveRecord::Base
+  has_many :matches
+
   before_save :set_twitter_name, :set_class_type
 
   scope :by_total_score, lambda { order('total_score DESC') }
