@@ -1,10 +1,15 @@
 puts 'create sample match'
-%w[maradona falcao bergomi pelè].each do |name|
-  DummyPlayer.create twitter_name: name
+[
+  %w[07003895AF05 falcao],
+  %w[0700384595EF maradona],
+  %w[0700466BA18B georgebest],
+  %w[07003874D398 pelè]
+].each do |arr|
+  rfid, name = arr
+  RegisteredPlayer.create twitter_name: name, rfid: rfid
 end
 
 players = Player.all
-
 now = Time.now
 
 5.times do |n|
