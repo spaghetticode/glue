@@ -4,18 +4,20 @@
   <tr>
     <th>Rank</th>
     <th>Name</th>
-    <th>Total score</th>
+    <th>Matches won</th>
+    <th>Matches lost</th>
   </tr>
-  <% status = {rank: 1, previous_score: 0 } %>
+  <% status = {rank: 1, previous_won: 0 } %>
   <% @players.each_with_object status do |player, status| %>
-    <% if player.total_score < status[:previous_score] %>
+    <% if player.won < status[:previous_won] %>
       <% status[:rank] = status[:rank] + 1 %>
     <% end %>
-    <%  status[:previous_score] = player.total_score %>
+    <%  status[:previous_won] = player.won %>
     <tr>
       <td><%= status[:rank] %></td>
       <td><%= player.name %></td>
-      <td><%= player.total_score %></td>
+      <td><%= player.won %></td>
+      <td><%= player.lost %></td>
     </tr>
   <% end %>
 </table>
