@@ -1,0 +1,15 @@
+table {
+  text-align: center;
+  border: 1px solid black;
+  padding: 15px;
+  border-collapse:collapse;
+
+}
+
+th, td {
+  padding: 5px 10px;
+}
+
+tr:nth-child(2n) {
+  background: #eee;
+}
