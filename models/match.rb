@@ -29,17 +29,23 @@ class Match < ActiveRecord::Base
   def close
     unless end_at
       update_attribute :end_at, now
-      update_winners_score
-      update_losers_score
+      update_winners
+      update_losers
     end
   end
 
-  def update_winners_score
-    winners.each {|player| player.increase_total_score winners_score }
+  def update_winners
+    winners.uniq.each do |player|
+      player.increase_total_score winners_score
+      player.increase_won
+    end
   end
 
-  def update_losers_score
-    losers.each { |player| player.increase_total_score losers_score }
+  def update_losers
+    losers.uniq.each do |player|
+      player.increase_total_score losers_score
+      player.increase_lost
+    end
   end
 
   def increase_team_score(a_or_b)

@@ -39,7 +39,7 @@ describe Match do
   end
 
   describe '#close' do
-    before { subject.stub update_winners_score: nil, update_losers_score: nil }
+    before { subject.stub update_winners: nil, update_losers: nil }
 
     it 'changes #end_at' do
       expect { subject.close }.to change subject, :end_at
@@ -266,6 +266,18 @@ describe Match do
       it '#winners includes player_3 and player_4' do
         4.times { |n| subject.send("player_#{n+1}=", Player.new) }
         subject.winners.should == [subject.player_3, subject.player_4]
+      end
+    end
+  end
+
+  describe '#update_winners' do
+    context 'when player_1 and player_2 are the same' do
+      let(:player) { DummyPlayer.new }
+
+      before { subject.stub winners: [player, player], winners_score: 5 }
+
+      it 'increases the player won matches only once' do
+        expect { subject.update_winners }.to change(player, :won).by 1
       end
     end
   end
