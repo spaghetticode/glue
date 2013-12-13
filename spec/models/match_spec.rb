@@ -281,4 +281,10 @@ describe Match do
       end
     end
   end
+
+  describe '#score' do
+    it 'concats team_a_score and team_b_score' do
+      subject.score.should == '0 - 0'
+    end
+  end
 end

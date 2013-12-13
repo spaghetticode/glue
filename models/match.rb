@@ -113,6 +113,10 @@ class Match < ActiveRecord::Base
     team_a_winner? ? [player_3, player_4] : [player_1, player_2]
   end
 
+  def score
+    "#{team_a_score} - #{team_b_score}"
+  end
+
   private
 
   def set_start_at
