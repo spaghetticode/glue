@@ -24,11 +24,12 @@ describe Player do
     end
   end
 
-  describe '::by_total_score' do
-    it 'orders players by total_score' do
-      first = Player.create total_score: 5
-      last  = Player.create total_score: 2
-      Player.by_total_score.should == [first, last]
+  describe '::by_won_matches' do
+    it 'orders players by won matches' do
+      first  = Player.create won: 5
+      last   = Player.create won: 2
+      second = Player.create won: 4
+      Player.by_won_matches.should == [first, second, last]
     end
   end
 end

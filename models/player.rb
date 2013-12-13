@@ -4,6 +4,7 @@ class Player < ActiveRecord::Base
   before_save :set_twitter_name, :set_class_type
 
   scope :by_total_score, lambda { order('total_score DESC') }
+  scope :by_won_matches, lambda { order('won DESC') }
 
   def self.from_data(data)
     const_get(data['type']).find_or_create_from_data data
