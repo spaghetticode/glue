@@ -72,7 +72,7 @@ get '/players' do
 end
 
 get '/leaderboard' do
-  @players = Player.by_total_score.paginate page: params[:page]
+  @players = Player.by_won_matches.paginate page: params[:page]
   erb :'players/leaderboard', layout: :admin
 end
 
