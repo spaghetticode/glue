@@ -38,6 +38,6 @@ class MatchManager
   end
 
   def twitter_names
-    "@#{@match.player_1}, @#{@match.player_2} VS @#{@match.player_3}, @#{@match.player_4}"
+    "@#{@match.player_1_name}, @#{@match.player_2_name} VS @#{@match.player_3_name}, @#{@match.player_4_name}"
   end
 end
