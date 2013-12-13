@@ -42,7 +42,7 @@ $(function() {
     },
     refresh: function(data) {
       this.refreshScore($('#score_a'), data.team_a_score);
-      this,refreshScore($('#score_b'), data.team_b_score);
+      this.refreshScore($('#score_b'), data.team_b_score);
       $('#player_1').text('@' + data.player_1);
       $('#player_2').text('@' + data.player_2);
       $('#player_3').text('@' + data.player_3);
@@ -50,7 +50,7 @@ $(function() {
     },
     refreshScore: function(element, score) {
       old_score = element.text();
-      if (old_score !== score) {
+      if (old_score != score) {
         element.text(score);
         element.addClass('sonar');
         setTimeout(function() {element.removeClass('sonar')}, 2000);
