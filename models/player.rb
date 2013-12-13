@@ -27,6 +27,16 @@ class Player < ActiveRecord::Base
     Match.where 'player_1_id = :id or player_2_id = :id or player_3_id = :id or player_4_id = :id', id: id
   end
 
+  def increase_won
+    self.won += 1
+    save
+  end
+
+  def increase_lost
+    self.lost += 1
+    save
+  end
+
   private
 
   def set_twitter_name

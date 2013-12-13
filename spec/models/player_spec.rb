@@ -32,4 +32,16 @@ describe Player do
       Player.by_won_matches.should == [first, second, last]
     end
   end
+
+  describe '#increase_won' do
+    it 'increases won field' do
+      expect { subject.increase_won }.to change(subject, :won).by 1
+    end
+  end
+
+  describe '#increase_lost' do
+    it 'increases lost field' do
+      expect { subject.increase_won }.to change(subject, :won).by 1
+    end
+  end
 end
