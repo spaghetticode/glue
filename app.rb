@@ -22,6 +22,13 @@ end
 
 helpers WillPaginate::Sinatra::Helpers
 
+helpers do
+  def formatted_time(time)
+  time.strftime('%y/%m/%d %H:%M')
+  end
+end
+
+
 db_connect
 
 

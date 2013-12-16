@@ -20,8 +20,8 @@
           <td><%= loser.name %></td>
         <% end %>
         <td><%= match.score %></td>
-        <td><%= match.start_at %></td>
-        <td><%= match.end_at %></td>
+        <td><%= formatted_time match.start_at %></td>
+        <td><%= formatted_time  match.end_at %></td>
       </tr>
     <% end %>
   </table>
