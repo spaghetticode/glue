@@ -1,31 +1,34 @@
-<h2>Players</h2>
+<div class="admin-wrapper">
+  <h2>Players</h2>
 
-<table>
-  <tr>
-    <th>Twitter name</th>
-    <th>Rfid</th>
-    <th>Type</th>
-    <th>Matches won</th>
-    <th>Matches lost</th>
-    <th colspan="3">Actions</th>
-  </tr>
-  <% @players.each do |player| %>
+  <table>
     <tr>
-      <td><%= player.name %></td>
-      <td><%= player.rfid %></td>
-      <td><%= player.type %></td>
-      <td><%= player.won %></td>
-      <td><%= player.lost %></td>
-      <td><a href="/players/<%= player.id %>">recent matches</a></td>
-      <td><a href="/players/<%= player.id %>/edit">edit</a></td>
-      <td>
-        <form action="/players/<%= player.id %>" method="POST">
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="destroy">
-        </form>
-      </td>
+      <th>Twitter name</th>
+      <th>Rfid</th>
+      <th>Type</th>
+      <th>Matches won</th>
+      <th>Matches lost</th>
+      <th colspan="3">Actions</th>
     </tr>
-  <% end %>
-</table>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.rfid %></td>
+        <td><%= player.type %></td>
+        <td><%= player.won %></td>
+        <td><%= player.lost %></td>
+        <td><a href="/players/<%= player.id %>">recent matches</a></td>
+        <td><a href="/players/<%= player.id %>/edit">edit</a></td>
+        <td>
+          <form action="/players/<%= player.id %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="destroy">
+          </form>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 
-<%= will_paginate @players %>
+  <%= will_paginate @players %>
+
+</div>

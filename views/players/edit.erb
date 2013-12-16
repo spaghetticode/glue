@@ -1,10 +1,14 @@
-<h2>Edit player</h2>
+<div class="admin-wrapper">
 
-<form action="/players/<%= @player.id %>" method="POST">
-  <input type="hidden" name="_method" value="PUT">
-  <label for="player_twitter_name">Twitter name</label>
-  <input type="text" name="player[twitter_name]" id="player_twitter_name" value="<%= @player.twitter_name %>">
-  <label for="player_rfid">Rfid</label>
-  <input type="text" name="player[rfid]" id="player_rfid" value="<%= @player.rfid %>">
-  <input type="submit">
-</form>
+  <h2>Edit player</h2>
+
+  <form action="/players/<%= @player.id %>" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <label for="player_twitter_name">Twitter name</label>
+    <input type="text" name="player[twitter_name]" id="player_twitter_name" value="<%= @player.twitter_name %>">
+    <label for="player_rfid">Rfid</label>
+    <input type="text" name="player[rfid]" id="player_rfid" value="<%= @player.rfid %>">
+    <input type="submit">
+  </form>
+
+</div>

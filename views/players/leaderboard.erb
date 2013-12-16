@@ -1,25 +1,29 @@
-<h2>Leaderboard</h2>
+<div class="admin-wrapper">
 
-<table>
-  <tr>
-    <th>Rank</th>
-    <th>Name</th>
-    <th>Matches won</th>
-    <th>Matches lost</th>
-  </tr>
-  <% status = {rank: 1, previous_won: 0 } %>
-  <% @players.each_with_object status do |player, status| %>
-    <% if player.won < status[:previous_won] %>
-      <% status[:rank] = status[:rank] + 1 %>
-    <% end %>
-    <%  status[:previous_won] = player.won %>
+  <h2>Leaderboard</h2>
+
+  <table>
     <tr>
-      <td><%= status[:rank] %></td>
-      <td><%= player.name %></td>
-      <td><%= player.won %></td>
-      <td><%= player.lost %></td>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Matches won</th>
+      <th>Matches lost</th>
     </tr>
-  <% end %>
-</table>
+    <% status = {rank: 1, previous_won: 0 } %>
+    <% @players.each_with_object status do |player, status| %>
+      <% if player.won < status[:previous_won] %>
+        <% status[:rank] = status[:rank] + 1 %>
+      <% end %>
+      <%  status[:previous_won] = player.won %>
+      <tr>
+        <td><%= status[:rank] %></td>
+        <td><%= player.name %></td>
+        <td><%= player.won %></td>
+        <td><%= player.lost %></td>
+      </tr>
+    <% end %>
+  </table>
 
-<%= will_paginate @players %>
+  <%= will_paginate @players %>
+
+</div>
