@@ -255,6 +255,7 @@ nav {
   line-height: 40px;
   top: 0;
   display: none;
+  box-shadow: inset 0 -3px 7px rgba(0,0,0,.2);
 }
 
 nav a {
@@ -270,4 +271,20 @@ nav a + a {
 #menu_trigger {
   width: 100%;
   height: 40px;
+}
+
+.leaderboard-link {
+  position: absolute;
+  left: 40px;
+  bottom: 30px;
+}
+
+.leaderboard-link a {
+  font-family: 'LCDBOLD';
+  color: #ccc;
+  text-decoration: none;
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: #eac100;
+  text-shadow: 0 0 50px rgba(234, 193, 0, .8); 
 }
