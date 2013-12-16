@@ -16,3 +16,6 @@ def db_connect
   ActiveRecord::Base.logger = Logger.new(STDOUT) unless env == :test
   ActiveRecord::Migration.verbose = true
 end
+
+# will log only if started with LOG=true bundle exec ruby app.rb ...
+$LOG = ENV['LOG'] == 'true'
