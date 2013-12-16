@@ -16,7 +16,7 @@ h2 {
   font-family: 'LCDBOLD';
   color: #ccc;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 35px;
   letter-spacing: 3px;
   color: #eac100;
   text-shadow: 0 0 50px rgba(234, 193, 0, .8); 
@@ -57,7 +57,8 @@ table {
   text-align: center;
   border: 1px solid black;
   padding: 15px;
-  border-collapse:collapse;
+  border-collapse: collapse;
+  color: #bdbdbd;
 }
 
 table,
