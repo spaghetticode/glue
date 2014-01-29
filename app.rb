@@ -10,15 +10,13 @@ enable :sessions
 use Rack::Flash, sweep: true
 set :session_secret, '*&JHASGDIW%(^B234AJSHD'
 
-if $LOG
-  file = File.expand_path('../log/app.log', __FILE__)
-  set :logging, true
-  log_file = File.new(file, 'a+')
-  log_file.sync = true
-  $stdout.reopen(log_file)
-  $stderr.reopen(log_file)
-  puts "Logging to #{file}\n"
-end
+file = File.expand_path('../log/app.log', __FILE__)
+set :logging, true
+log_file = File.new(file, 'a+')
+log_file.sync = true
+$stdout.reopen(log_file)
+$stderr.reopen(log_file)
+puts "Logging to #{file}\n"
 
 helpers WillPaginate::Sinatra::Helpers
 
